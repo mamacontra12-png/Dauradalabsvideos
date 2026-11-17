@@ -10,3 +10,5 @@ Copia de referencia para los próximos vídeos. Todo dibujado y animado con SVG/
 | Antonio | `personajes.tsx` (`AntonioRig`) | Estados extra: `electro` (pelos de punta) y `tizne` (cara tiznada) para gags. |
 | Paco | `Paco.tsx`, `personajes.tsx` (`PacoConMovil`) | |
 | Símbolo DL | `dl_mark.svg`, `DlMark.tsx` | Mismos trazados y colores que el oficial. |
+| Laura | `laura.svg` + `Persona.tsx` | Recepcionista de clínica dental (~30, coleta castaña, uniforme azul claro). Extras ocultos: `facepalm` (palmada en la frente, sustituye a `arm-right`) y `guino`. |
+| Paciente | `paciente.svg` + `Persona.tsx` | Paciente genérico. Clases `.ropa`/`.pelo` para recolorear; `hinchazon` y `algodon` (boca dormida). Usa `uid` en `Persona` para sacar varios a la vez. |

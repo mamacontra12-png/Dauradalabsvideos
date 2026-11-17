@@ -28,7 +28,9 @@ const dur = (f: number, semilla: number) => {
 };
 
 export const Persona: React.FC<{
-  quien: 'kevin' | 'riyad' | 'rosa' | 'jordi';
+  quien: 'kevin' | 'riyad' | 'rosa' | 'jordi' | 'laura' | 'paciente';
+  /** Sufijo para distinguir varias copias del mismo personaje en un fotograma (cada una con su pose). */
+  uid?: string;
   /** CSS extra (con {c} = selector del personaje), p. ej. ocultar un móvil. */
   extra?: string;
   /** Espejo horizontal. */
@@ -41,12 +43,12 @@ export const Persona: React.FC<{
   ancho: number;
   pose?: PoseP;
   style?: React.CSSProperties;
-}> = ({quien, frame, vol, habla, x, y, ancho, pose = {}, style, extra = '', espejo = false}) => {
-  const cls = `p-${quien}`;
+}> = ({quien, uid = '', frame, vol, habla, x, y, ancho, pose = {}, style, extra = '', espejo = false}) => {
+  const cls = `p-${quien}${uid}`;
   const resp = Math.sin(frame / 18);
   const abre = habla ? Math.min(1, vol * 1.25) : 0;
   const balanceo = habla ? Math.sin(frame / 7) * 3 * Math.min(1, vol * 3 + 0.3) : Math.sin(frame / 25) * 0.8;
-  const ojo = dur(frame, {kevin: 11, riyad: 47, rosa: 29, jordi: 63}[quien]);
+  const ojo = dur(frame, {kevin: 11, riyad: 47, rosa: 29, jordi: 63, laura: 37, paciente: 53}[quien] + uid.length * 17);
   const caja = (px: number, py: number) => `transform-box: view-box; transform-origin: ${px}px ${py}px;`;
   const css = `
 .${cls} svg { width: 600px; height: 900px; overflow: visible; display: block; }

@@ -7,7 +7,7 @@ import {mkdirSync, rmSync, statSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {browserExecutable, raiz} from './comun.mjs';
 
-const NOMBRES = {A: 'dia1_prompt', B: 'dia2_rosa', C: 'dia2_jordi'};
+const NOMBRES = {A: 'dia1_prompt', B: 'dia2_rosa', C: 'dia2_jordi', laura: 'suelto_resenas_laura'};
 const PIE = `Por cada 1.000 seguidores bajamos un 1 % nuestros precios (condiciones en la bio). Síguenos y sal en el próximo vídeo 👇`;
 const DESCRIPCION = {
   A: `Día 1 montando una agencia y consultoría de IA desde cero 🚀 Somos Kevin y Riyad, dos socios de Tarragona. Hoy, un regalo para fontaneros (y cualquier autónomo): el prompt que te ordena los presupuestos en segundos. Haz captura 📸 y revisa siempre los precios antes de enviarlo.
@@ -28,6 +28,14 @@ Los personajes son dibujos y la voz es sintética.
 ${PIE}
 
 Comenta CLIMA y te lo explicamos.
+
+Los personajes son dibujos y la voz es sintética.
+`,
+  // vídeo suelto (fuera de la serie): sin PIE de seguidores
+  laura: `¿4 reseñas contra 300 de la competencia? 😅 Laura, de una clínica dental, ya no sabe cómo pedirlas… hasta que lo automatiza: unas horas después de la cita, al paciente le llega un WhatsApp con el enlace para dejar su reseña ⭐ Y el truco gratis: responde a todas tus reseñas, aunque sea con un "gracias". Google lo ve y los clientes también.
+
+¿Tu negocio tiene pocas reseñas? Comenta RESEÑAS y te lo montamos 👇
+dauradalabs.com
 
 Los personajes son dibujos y la voz es sintética.
 `,

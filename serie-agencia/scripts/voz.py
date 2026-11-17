@@ -41,6 +41,18 @@ def guion(cfg, video):
             ("cierre", "kevin", "Comenta 24H. Y síguenos: cada mil seguidores bajamos un 1 %."),
             ("bucle", "lolo", "Y Rosa sigue con…"),
         ]
+    if video == "laura":
+        # Vídeo suelto (no es de la serie): Laura, clínica dental, reseñas. Lolo narra.
+        return [
+            ("carteles", "lolo", "Enfrente, trescientas reseñas, y Laura, cuatro."),
+            ("pide", "laura", "¿Nos dejas una reseña?"),
+            ("zinco", "paciente", "¡Ziinco ezztrelluaz!"),
+            ("persigue", "lolo", "Desde entonces, Laura caza reseñas."),
+            ("lolo", "lolo", "Tranquila, Laura: horas después de la cita, ya sin anestesia, le llega un WhatsApp con el enlace para la reseña."),
+            ("cartel", None, 1.7),  # sin voz: el contador sube y el cartel de Laura se enciende
+            ("truco", "lolo", "Truco gratis: responde a todas tus reseñas, aunque sea con un gracias."),
+            ("final", "lolo", "¿Tu negocio tiene pocas reseñas? Comenta RESEÑAS y te lo montamos."),
+        ]
     return [
         ("intro", "riyad", "¡Ya nos sigue! Día 2 montando nuestra agencia de IA."),
         ("jordi", "lolo", "Jordi es instalador. Y cada día le hacen las mismas preguntas."),

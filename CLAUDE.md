@@ -52,6 +52,16 @@ Ejemplo de referencia: `serie-agencia/src/VideoB.tsx` (Rosa). Cada pieza es una 
 - La portada se saca de la composición `<V>-portada` (inicio de la escena `intro`), no del fotograma 40 del vídeo.
 - Con esta estructura el vídeo sale de ~38–40 s; si hace falta acortar, recorta primero las frases propias (cuerpo 1, bucle final) y pregunta antes de tocar las que da el usuario.
 
+## Vídeos sueltos (fuera de la serie)
+Ejemplo de referencia: `serie-agencia/src/VideoLaura.tsx` (composición `laura`, "4 reseñas contra 300").
+- **Sin** "DÍA X", sin pósit de seguidor y sin pared/contador de seguidores. No usan `Intro` ni `Cierre`.
+- Lolo es la mascota y el narrador. Pantalla final: símbolo DL + "Comenta PALABRA" + `dauradalabs.com`, con Lolo señalando a cámara.
+- 25–30 s y tono de humor. Gancho en texto arriba desde el segundo 0.
+- El id del vídeo es un nombre (`laura`), no una letra: bloque en `config.json` (con `SEGUIDOR: ""`, `COLA`), entrada en `V` de `Root.tsx`, `NOMBRES`/`DESCRIPCION` en `render.mjs` (sin `${PIE}`) y guion en `voz.py`.
+- Voces extra en `config.json`: `laura` (es-ES-ElviraNeural) y `paciente` (Alvaro grave y lento). Los personajes nuevos sí pueden hablar si el guion lo pide.
+- Las pausas de edge-tts tras un punto son de ~0,9 s: si sobra tiempo, usa comas o dos puntos en el texto.
+- Ficha de personajes nuevos: composición `ficha-laura` (`node scripts/still.mjs ficha-laura 0`).
+
 ## Cuando el usuario mande el prompt de un vídeo nuevo
 1. **Guion.** Escribe las frases siguiendo la **estructura de 8 piezas** de arriba, 2,5–3 palabras/s. Comprueba las reglas de arriba (sin precios, sin clientes, sin marcas en pantalla, seguidor solo en el pósit). Si falta el usuario del seguidor, el número de seguidores o el número de día, pregúntalo.
 2. **Letra nueva** (D, E…): copia el vídeo más parecido (`src/VideoB.tsx`) a `src/VideoD.tsx` y adapta sus escenas del medio y `MIN_D`. Reutiliza siempre `Intro`, `Truco`, `Cierre` y `Reel`, y usa `e.at('palabra')` para que los elementos aparezcan cuando la voz los nombra.

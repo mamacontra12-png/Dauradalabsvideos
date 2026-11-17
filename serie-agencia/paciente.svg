@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <!--
+    Paciente genérico de la clínica dental (personaje ficticio, ~50 años). Mismas piezas que Kevin y Riyad.
+    Clases para variantes de color: .ropa (camisa y mangas), .pelo. Extras: hinchazon (moflete dormido por la anestesia),
+    algodon (algodón en la boca). Para otros pacientes: recolorear .ropa/.pelo y ocultar hinchazon/algodon con CSS.
+  -->
+  <g id="paciente">
+    <g id="torso">
+      <path class="ropa" d="M176 602 Q184 550 252 538 L348 538 Q416 550 424 602 L430 900 L170 900 Z" fill="#E07B39" stroke="#00000033" stroke-width="3"/>
+      <path d="M300 590 L300 900" stroke="#00000022" stroke-width="3"/>
+      <circle cx="300" cy="640" r="5" fill="#FFFFFFAA"/>
+      <circle cx="300" cy="700" r="5" fill="#FFFFFFAA"/>
+      <circle cx="300" cy="760" r="5" fill="#FFFFFFAA"/>
+    </g>
+    <g id="arm-left">
+      <path class="ropa" d="M166 600 Q138 660 138 760 L212 764 Q210 670 222 640 Z" fill="#E07B39" stroke="#00000033" stroke-width="3"/>
+      <path d="M144 758 Q140 790 150 820 L198 820 Q204 790 208 762 Z" fill="#D8A27E"/>
+      <circle cx="172" cy="836" r="28" fill="#D8A27E"/>
+    </g>
+    <g id="arm-right">
+      <path class="ropa" d="M434 600 Q462 660 462 760 L388 764 Q390 670 378 640 Z" fill="#E07B39" stroke="#00000033" stroke-width="3"/>
+      <path d="M456 758 Q460 790 450 820 L402 820 Q396 790 392 762 Z" fill="#D8A27E"/>
+      <circle cx="428" cy="836" r="28" fill="#D8A27E"/>
+    </g>
+    <g id="neck">
+      <rect x="266" y="465" width="68" height="90" rx="22" fill="#D8A27E"/>
+      <path d="M266 485 Q300 515 334 485 L334 507 Q300 533 266 507 Z" fill="#C08866"/>
+      <path class="ropa" d="M246 538 L300 586 L282 604 L232 556 Z" fill="#E07B39" stroke="#00000033" stroke-width="3" stroke-linejoin="round"/>
+      <path class="ropa" d="M354 538 L300 586 L318 604 L368 556 Z" fill="#E07B39" stroke="#00000033" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <g id="head" transform="translate(0 45)">
+      <ellipse cx="183" cy="312" rx="20" ry="30" fill="#D8A27E"/>
+      <ellipse cx="417" cy="312" rx="20" ry="30" fill="#D8A27E"/>
+      <ellipse cx="185" cy="312" rx="9" ry="16" fill="#C08866"/>
+      <ellipse cx="415" cy="312" rx="9" ry="16" fill="#C08866"/>
+      <ellipse id="face" cx="300" cy="306" rx="118" ry="132" fill="#D8A27E"/>
+      <!-- moflete hinchado (lado izquierdo de la pantalla) -->
+      <g id="hinchazon">
+        <ellipse cx="206" cy="372" rx="44" ry="50" fill="#D8A27E"/>
+        <circle cx="214" cy="364" r="20" fill="#E58C8C" opacity="0.55"/>
+      </g>
+      <g id="hair">
+        <path class="pelo" d="M184 292 Q176 196 236 168 Q300 146 364 168 Q424 196 416 292 Q406 244 380 230 Q350 218 330 226 Q300 206 268 222 Q232 218 210 240 Q192 258 184 292 Z" fill="#9CA0A8"/>
+        <path d="M238 196 Q262 184 288 184 M318 182 Q348 184 368 198" stroke="#FFFFFF66" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="brows">
+        <path d="M226 262 Q252 250 282 258" stroke="#6E6A66" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <path d="M318 258 Q348 250 374 262" stroke="#6E6A66" stroke-width="12" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="eyes">
+        <g class="eye">
+          <ellipse cx="258" cy="302" rx="20" ry="19" fill="#fff"/>
+          <circle cx="259" cy="305" r="11" fill="#3B4A6B"/>
+          <circle cx="259" cy="305" r="6" fill="#120C08"/>
+          <circle cx="263" cy="300" r="3.4" fill="#fff"/>
+        </g>
+        <g class="eye">
+          <ellipse cx="342" cy="302" rx="20" ry="19" fill="#fff"/>
+          <circle cx="343" cy="305" r="11" fill="#3B4A6B"/>
+          <circle cx="343" cy="305" r="6" fill="#120C08"/>
+          <circle cx="347" cy="300" r="3.4" fill="#fff"/>
+        </g>
+      </g>
+      <path id="nose" d="M304 312 Q290 346 298 354 Q308 360 316 352" stroke="#C08866" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- bigote -->
+      <path class="pelo" d="M258 376 Q280 362 300 372 Q320 362 342 376 Q322 384 300 380 Q278 384 258 376 Z" fill="#9CA0A8"/>
+      <!-- boca torcida (medio dormida) -->
+      <g id="mouth">
+        <path d="M272 396 Q298 418 332 392 Q306 404 272 396 Z" fill="#7A2E2E"/>
+        <path d="M270 395 Q300 420 334 390" stroke="#7A2E2E" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- algodón asomando por la comisura -->
+      <rect id="algodon" x="244" y="386" width="30" height="18" rx="8" fill="#FFFFFF" stroke="#D8DDE6" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <!--
+    Laura, recepcionista de una clínica dental (personaje ficticio, ~30 años): pelo castaño en coleta y uniforme sanitario azul claro.
+    Mismas piezas que Kevin y Riyad: head (pivota en 300,485), hair, brows, eyes (.eye), mouth,
+    arm-left (175,610), arm-right (425,610), torso, neck.
+    Extras: coleta (dentro de head), guino (ojo derecho cerrado, oculto), facepalm (brazo con la mano en la frente, oculto).
+  -->
+  <g id="laura">
+    <!-- UNIFORME SANITARIO AZUL CLARO (cuello de pico, bolsillo y tarjeta identificativa) -->
+    <g id="torso">
+      <path d="M178 602 Q185 552 252 540 L348 540 Q415 552 422 602 L428 900 L172 900 Z" fill="#A9D8EE" stroke="#6FA6C4" stroke-width="3"/>
+      <path d="M300 640 L300 900" stroke="#8FC3DD" stroke-width="3"/>
+      <!-- bolsillo con bolígrafo -->
+      <rect x="200" y="690" width="76" height="80" rx="10" fill="#9BCDE6" stroke="#6FA6C4" stroke-width="3"/>
+      <rect x="226" y="672" width="9" height="40" rx="4" fill="#1D3E9E"/>
+      <rect x="226" y="668" width="9" height="10" rx="3" fill="#F2B932"/>
+      <!-- tarjeta identificativa con un diente dibujado -->
+      <rect x="340" y="660" width="64" height="82" rx="9" fill="#FFFFFF" stroke="#6FA6C4" stroke-width="3"/>
+      <path d="M356 680 Q356 672 364 672 Q372 672 372 678 Q372 672 380 672 Q388 672 388 680 Q388 692 384 704 Q382 712 378 704 L374 694 L370 704 Q366 712 364 704 Q356 692 356 680 Z" fill="#E9F4FA" stroke="#3E9AAE" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="350" y="720" width="44" height="7" rx="3.5" fill="#86D2D7"/>
+    </g>
+    <!-- BRAZOS (pivotan en el hombro): manga corta azul, antebrazo y mano -->
+    <g id="arm-left">
+      <path d="M168 600 Q140 650 140 700 L214 704 Q212 660 222 640 Z" fill="#A9D8EE" stroke="#6FA6C4" stroke-width="3"/>
+      <path d="M146 698 Q138 760 150 818 L196 818 Q200 760 206 702 Z" fill="#EDBB98"/>
+      <circle id="hand-left" cx="172" cy="836" r="28" fill="#EDBB98"/>
+    </g>
+    <g id="arm-right">
+      <path d="M432 600 Q460 650 460 700 L386 704 Q388 660 378 640 Z" fill="#A9D8EE" stroke="#6FA6C4" stroke-width="3"/>
+      <path d="M454 698 Q462 760 450 818 L404 818 Q400 760 394 702 Z" fill="#EDBB98"/>
+      <circle id="hand-right" cx="428" cy="836" r="28" fill="#EDBB98"/>
+    </g>
+    <!-- CUELLO + CUELLO DE PICO -->
+    <g id="neck">
+      <rect x="268" y="465" width="64" height="90" rx="22" fill="#EDBB98"/>
+      <path d="M268 485 Q300 515 332 485 L332 507 Q300 533 268 507 Z" fill="#D9A07C"/>
+      <path d="M262 540 L300 612 L338 540 Z" fill="#EDBB98"/>
+      <path d="M252 540 L300 628 L348 540" stroke="#7FB5D1" stroke-width="10" fill="none" stroke-linejoin="round"/>
+    </g>
+    <!-- CABEZA (pivota en la base del cuello, 300,485) -->
+    <g id="head" transform="translate(0 45)">
+      <!-- coleta (detrás de la cabeza, asoma por la derecha) -->
+      <g id="coleta">
+        <path d="M380 196 Q470 190 478 270 Q486 350 448 420 Q436 440 430 418 Q452 340 430 280 Q418 246 384 236 Z" fill="#6B3E22"/>
+        <path d="M448 262 Q462 318 446 380" stroke="#8A5530" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="370" y="198" width="30" height="38" rx="10" fill="#1D3E9E" transform="rotate(-20 385 217)"/>
+      </g>
+      <ellipse cx="183" cy="312" rx="20" ry="30" fill="#EDBB98"/>
+      <ellipse cx="417" cy="312" rx="20" ry="30" fill="#EDBB98"/>
+      <ellipse cx="185" cy="312" rx="9" ry="16" fill="#D9A07C"/>
+      <ellipse cx="415" cy="312" rx="9" ry="16" fill="#D9A07C"/>
+      <circle cx="183" cy="346" r="6" fill="#86D2D7"/>
+      <circle cx="417" cy="346" r="6" fill="#86D2D7"/>
+      <ellipse id="face" cx="300" cy="304" rx="116" ry="132" fill="#EDBB98"/>
+      <g id="hair">
+        <!-- pelo recogido hacia atrás, con raya a un lado y un mechón suelto -->
+        <path d="M184 296 Q170 184 252 152 Q300 134 352 150 Q430 176 418 296 Q408 236 372 214 Q330 196 286 206 Q244 214 218 240 Q194 262 184 296 Z" fill="#6B3E22"/>
+        <path d="M286 206 Q250 226 236 268" stroke="#6B3E22" stroke-width="16" fill="none" stroke-linecap="round"/>
+        <path d="M232 178 Q270 160 312 162" stroke="#8A5530" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M330 168 Q370 176 394 206" stroke="#8A5530" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M410 250 Q426 290 412 330" stroke="#6B3E22" stroke-width="10" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="brows">
+        <path d="M230 262 Q254 250 282 258" stroke="#5A321A" stroke-width="9" fill="none" stroke-linecap="round" transform="rotate(-6 255 256)"/>
+        <path d="M318 258 Q346 250 370 262" stroke="#5A321A" stroke-width="9" fill="none" stroke-linecap="round" transform="rotate(6 345 256)"/>
+      </g>
+      <g id="eyes">
+        <g class="eye">
+          <ellipse cx="258" cy="302" rx="21" ry="20" fill="#fff"/>
+          <circle cx="259" cy="304" r="12.5" fill="#7A4A26"/>
+          <circle cx="259" cy="304" r="6.5" fill="#120C08"/>
+          <circle cx="263" cy="299" r="3.8" fill="#fff"/>
+          <path d="M236 293 Q258 284 280 293" stroke="#2A160C" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M237 291 L229 284 M242 287 L236 279" stroke="#2A160C" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+        <g class="eye">
+          <ellipse cx="342" cy="302" rx="21" ry="20" fill="#fff"/>
+          <circle cx="343" cy="304" r="12.5" fill="#7A4A26"/>
+          <circle cx="343" cy="304" r="6.5" fill="#120C08"/>
+          <circle cx="347" cy="299" r="3.8" fill="#fff"/>
+          <path d="M320 293 Q342 284 364 293" stroke="#2A160C" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M363 291 L371 284 M358 287 L364 279" stroke="#2A160C" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- guiño: ojo derecho (de la pantalla) cerrado y sonriente -->
+      <path id="guino" display="none" d="M322 306 Q342 290 362 306" stroke="#2A160C" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path id="nose" d="M302 314 Q292 340 298 348 Q306 352 312 346" stroke="#D9A07C" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="234" cy="350" r="18" fill="#E58C8C" opacity="0.4"/>
+      <circle cx="366" cy="350" r="18" fill="#E58C8C" opacity="0.4"/>
+      <g id="mouth">
+        <path d="M270 390 Q300 410 330 390 Q300 398 270 390 Z" fill="#A8434B"/>
+        <path d="M268 389 Q300 414 332 389" stroke="#A8434B" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+    </g>
+    <!-- palmada en la frente: sustituye a arm-right (oculto por defecto) -->
+    <g id="facepalm" display="none">
+      <path d="M430 604 L452 520" stroke="#A9D8EE" stroke-width="74" stroke-linecap="round"/>
+      <path d="M452 524 L456 466 L352 300" stroke="#EDBB98" stroke-width="46" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <ellipse cx="336" cy="282" rx="40" ry="34" fill="#EDBB98"/>
+      <path d="M306 262 L360 258 M304 280 L362 276 M308 298 L358 294" stroke="#D9A07C" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
