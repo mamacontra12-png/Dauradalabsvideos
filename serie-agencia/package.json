@@ -1,0 +1,24 @@
+{
+  "name": "serie-agencia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reels de la serie Montando una agencia de IA desde cero (vídeos A, B y C). Variables en config.json",
+  "type": "module",
+  "scripts": {
+    "stills": "node scripts/still.mjs",
+    "render": "node scripts/render.mjs",
+    "voz": "python3 scripts/voz.py"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.543",
+    "@remotion/cli": "4.0.543",
+    "@remotion/renderer": "4.0.543",
+    "react": "^19",
+    "react-dom": "^19",
+    "remotion": "4.0.543"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "7.0.2"
+  }
+}

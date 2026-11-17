@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <!--
+    Rosa, dueña de una empresa de multiservicios 24/7 (personaje ficticio, ~45 años).
+    Mismas piezas que Kevin y Riyad: head (pivota en 300,485), hair, brows, eyes (.eye), mouth,
+    arm-left (175,610), arm-right (425,610), torso, neck. Extras: movil-izq, movil-der, movil-bolsillo, gafas.
+  -->
+  <g id="rosa">
+    <!-- POLO MORADO + CHALECO GRIS CON BOLSILLOS -->
+    <g id="torso">
+      <path d="M178 602 Q185 552 252 540 L348 540 Q415 552 422 602 L428 900 L172 900 Z" fill="#7C4DB5" stroke="#5A3388" stroke-width="3"/>
+      <path d="M182 600 Q190 556 246 544 L262 546 Q262 700 278 900 L174 900 Z" fill="#8A919C" stroke="#646B76" stroke-width="3"/>
+      <path d="M418 600 Q410 556 354 544 L338 546 Q338 700 322 900 L426 900 Z" fill="#8A919C" stroke="#646B76" stroke-width="3"/>
+      <!-- bolsillo izquierdo -->
+      <rect x="190" y="720" width="68" height="74" rx="10" fill="#7A818C" stroke="#646B76" stroke-width="3"/>
+      <path d="M190 734 L258 734" stroke="#646B76" stroke-width="3"/>
+      <!-- bolsillo derecho con el tercer móvil asomando -->
+      <g id="movil-bolsillo">
+        <rect x="350" y="664" width="44" height="78" rx="9" fill="#1E2230" stroke="#0A1A44" stroke-width="3"/>
+        <rect x="355" y="670" width="34" height="50" rx="5" fill="#2E5BD6"/>
+        <circle cx="372" cy="690" r="9" fill="#2FD27A"/>
+      </g>
+      <rect x="342" y="704" width="68" height="74" rx="10" fill="#7A818C" stroke="#646B76" stroke-width="3"/>
+      <path d="M342 718 L410 718" stroke="#646B76" stroke-width="3"/>
+      <circle cx="290" cy="640" r="5" fill="#E9E1F5"/>
+      <circle cx="290" cy="668" r="5" fill="#E9E1F5"/>
+    </g>
+    <!-- BRAZOS (pivotan en el hombro): manga corta morada, antebrazo y móvil en cada mano -->
+    <g id="arm-left">
+      <path d="M168 600 Q140 650 140 700 L214 704 Q212 660 222 640 Z" fill="#7C4DB5" stroke="#5A3388" stroke-width="3"/>
+      <path d="M146 698 Q138 760 150 818 L196 818 Q200 760 206 702 Z" fill="#E9AE8C"/>
+      <g id="movil-izq">
+        <rect x="140" y="776" width="52" height="92" rx="10" fill="#1E2230" stroke="#0A1A44" stroke-width="3"/>
+        <rect x="146" y="784" width="40" height="70" rx="6" fill="#2E5BD6"/>
+        <circle cx="166" cy="812" r="11" fill="#2FD27A"/>
+      </g>
+      <circle id="hand-left" cx="172" cy="836" r="28" fill="#E9AE8C"/>
+    </g>
+    <g id="arm-right">
+      <path d="M432 600 Q460 650 460 700 L386 704 Q388 660 378 640 Z" fill="#7C4DB5" stroke="#5A3388" stroke-width="3"/>
+      <path d="M454 698 Q462 760 450 818 L404 818 Q400 760 394 702 Z" fill="#E9AE8C"/>
+      <g id="movil-der">
+        <rect x="408" y="776" width="52" height="92" rx="10" fill="#1E2230" stroke="#0A1A44" stroke-width="3"/>
+        <rect x="414" y="784" width="40" height="70" rx="6" fill="#2E5BD6"/>
+        <circle cx="434" cy="812" r="11" fill="#2FD27A"/>
+      </g>
+      <circle id="hand-right" cx="428" cy="836" r="28" fill="#E9AE8C"/>
+    </g>
+    <!-- CUELLO + CUELLO DEL POLO -->
+    <g id="neck">
+      <rect x="268" y="465" width="64" height="90" rx="22" fill="#E9AE8C"/>
+      <path d="M268 485 Q300 515 332 485 L332 507 Q300 533 268 507 Z" fill="#D18F6D"/>
+      <path d="M248 540 L300 580 L284 600 L236 556 Z" fill="#9466CC" stroke="#5A3388" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M352 540 L300 580 L316 600 L364 556 Z" fill="#9466CC" stroke="#5A3388" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <!-- CABEZA (pivota en la base del cuello, 300,485) -->
+    <g id="head" transform="translate(0 45)">
+      <ellipse cx="183" cy="312" rx="20" ry="30" fill="#E9AE8C"/>
+      <ellipse cx="417" cy="312" rx="20" ry="30" fill="#E9AE8C"/>
+      <ellipse cx="185" cy="312" rx="9" ry="16" fill="#D18F6D"/>
+      <ellipse cx="415" cy="312" rx="9" ry="16" fill="#D18F6D"/>
+      <circle cx="182" cy="346" r="7" fill="#F2B932"/>
+      <circle cx="418" cy="346" r="7" fill="#F2B932"/>
+      <ellipse id="face" cx="300" cy="304" rx="116" ry="132" fill="#E9AE8C"/>
+      <g id="hair">
+        <path d="M186 280 Q176 196 230 160 Q300 124 370 160 Q424 196 414 280 Q402 236 372 222 Q300 200 228 222 Q198 236 186 280 Z" fill="#C2512A"/>
+        <circle cx="190" cy="262" r="22" fill="#C2512A"/>
+        <circle cx="410" cy="262" r="22" fill="#C2512A"/>
+        <circle cx="194" cy="226" r="24" fill="#C2512A"/>
+        <circle cx="406" cy="226" r="24" fill="#C2512A"/>
+        <circle cx="212" cy="190" r="25" fill="#C2512A"/>
+        <circle cx="388" cy="190" r="25" fill="#C2512A"/>
+        <circle cx="244" cy="162" r="26" fill="#C2512A"/>
+        <circle cx="356" cy="162" r="26" fill="#C2512A"/>
+        <circle cx="282" cy="148" r="26" fill="#C2512A"/>
+        <circle cx="320" cy="148" r="26" fill="#C2512A"/>
+        <circle cx="236" cy="214" r="20" fill="#C2512A"/>
+        <circle cx="270" cy="200" r="19" fill="#C2512A"/>
+        <circle cx="330" cy="200" r="19" fill="#C2512A"/>
+        <circle cx="364" cy="214" r="20" fill="#C2512A"/>
+        <path d="M200 236 q4 -14 14 -10 q8 5 0 12" stroke="#E07A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M240 168 q4 -14 14 -10 q8 5 0 12" stroke="#E07A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M300 148 q4 -14 14 -10 q8 5 0 12" stroke="#E07A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M356 170 q4 -14 14 -10 q8 5 0 12" stroke="#E07A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M392 232 q4 -14 14 -10 q8 5 0 12" stroke="#E07A4A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M262 206 q4 -12 12 -8 q7 4 0 10" stroke="#E07A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M326 206 q4 -12 12 -8 q7 4 0 10" stroke="#E07A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- gafas de pasta apoyadas en la cabeza -->
+        <g id="gafas">
+          <path d="M214 176 Q300 150 386 176" stroke="#1E1A2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <rect x="218" y="160" width="70" height="44" rx="18" fill="#BFE6F5" fill-opacity="0.55" stroke="#1E1A2E" stroke-width="8" transform="rotate(-6 253 182)"/>
+          <rect x="312" y="160" width="70" height="44" rx="18" fill="#BFE6F5" fill-opacity="0.55" stroke="#1E1A2E" stroke-width="8" transform="rotate(6 347 182)"/>
+          <path d="M288 180 Q300 172 312 180" stroke="#1E1A2E" stroke-width="7" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+      <g id="brows">
+        <path d="M228 262 Q252 250 282 258" stroke="#8E3A1C" stroke-width="11" fill="none" stroke-linecap="round" transform="rotate(-8 255 256)"/>
+        <path d="M318 258 Q348 250 372 262" stroke="#8E3A1C" stroke-width="11" fill="none" stroke-linecap="round" transform="rotate(8 345 256)"/>
+      </g>
+      <g id="eyes">
+        <g class="eye">
+          <ellipse cx="258" cy="302" rx="21" ry="19" fill="#fff"/>
+          <circle cx="259" cy="304" r="12" fill="#3F7A4E"/>
+          <circle cx="259" cy="304" r="6.5" fill="#120C08"/>
+          <circle cx="263" cy="299" r="3.6" fill="#fff"/>
+          <path d="M236 293 Q258 285 280 293" stroke="#3A2016" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M236 291 L229 285 M240 288 L235 280" stroke="#3A2016" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+        <g class="eye">
+          <ellipse cx="342" cy="302" rx="21" ry="19" fill="#fff"/>
+          <circle cx="343" cy="304" r="12" fill="#3F7A4E"/>
+          <circle cx="343" cy="304" r="6.5" fill="#120C08"/>
+          <circle cx="347" cy="299" r="3.6" fill="#fff"/>
+          <path d="M320 293 Q342 285 364 293" stroke="#3A2016" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M364 291 L371 285 M360 288 L365 280" stroke="#3A2016" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- patas de gallo (unos 45 años) -->
+      <path d="M220 318 l-12 4 M222 328 l-12 8" stroke="#D18F6D" stroke-width="3" stroke-linecap="round"/>
+      <path d="M380 318 l12 4 M378 328 l12 8" stroke="#D18F6D" stroke-width="3" stroke-linecap="round"/>
+      <path id="nose" d="M302 314 Q292 342 298 350 Q306 354 312 348" stroke="#D18F6D" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="234" cy="352" r="18" fill="#E58C8C" opacity="0.38"/>
+      <circle cx="366" cy="352" r="18" fill="#E58C8C" opacity="0.38"/>
+      <g id="mouth">
+        <path d="M270 392 Q300 410 330 392 Q300 400 270 392 Z" fill="#8C3A3A"/>
+        <path d="M268 391 Q300 414 332 391" stroke="#8C3A3A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M268 391 Q262 388 260 384 M332 391 Q338 388 340 384" stroke="#8C3A3A" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>

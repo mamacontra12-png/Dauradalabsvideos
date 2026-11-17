@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <!--
+    Jordi, instalador de climatización (personaje ficticio, ~35 años). Sin gorra ni casco.
+    Mismas piezas que Kevin y Riyad: head (pivota en 300,485), hair, brows, eyes (.eye), mouth,
+    arm-left (175,610), arm-right (425,610), torso, neck. Extras: gafas-prot, destornillador, movil-jordi.
+  -->
+  <g id="jordi">
+    <!-- CAMISETA ROJA + CINTURÓN DE HERRAMIENTAS + PANTALÓN GRIS -->
+    <g id="torso">
+      <path d="M176 602 Q183 552 252 540 L348 540 Q417 552 424 602 L430 820 L170 820 Z" fill="#D23B32" stroke="#A3271F" stroke-width="3"/>
+      <path d="M170 812 L430 812 L434 900 L166 900 Z" fill="#6E747E" stroke="#555A63" stroke-width="3"/>
+      <path d="M300 830 L300 900" stroke="#555A63" stroke-width="4"/>
+      <!-- cinturón -->
+      <rect x="166" y="790" width="268" height="34" rx="8" fill="#7A4A26" stroke="#5A3418" stroke-width="3"/>
+      <rect x="284" y="792" width="32" height="30" rx="5" fill="none" stroke="#C9CDD3" stroke-width="5"/>
+      <!-- bolsas con herramientas -->
+      <path d="M176 818 L246 818 L240 884 Q212 892 184 884 Z" fill="#8F5A30" stroke="#5A3418" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="196" y="770" width="12" height="52" rx="4" fill="#E2B04A" stroke="#5A3418" stroke-width="2"/>
+      <rect x="214" y="776" width="10" height="46" rx="3" fill="#C9CDD3" stroke="#555A63" stroke-width="2"/>
+      <path d="M354 818 L424 818 L416 884 Q388 892 362 884 Z" fill="#8F5A30" stroke="#5A3418" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M380 818 L372 772 M396 818 L404 772" stroke="#2E3440" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="388" cy="772" r="7" fill="#C9CDD3"/>
+    </g>
+    <!-- BRAZOS: manga corta roja, antebrazos fuertes -->
+    <g id="arm-left">
+      <path d="M166 600 Q136 646 136 700 L214 706 Q212 660 222 640 Z" fill="#D23B32" stroke="#A3271F" stroke-width="3"/>
+      <path d="M142 698 Q130 760 144 818 L198 818 Q204 760 210 702 Z" fill="#E0A27E"/>
+      <path d="M160 730 Q166 760 162 790" stroke="#B9815F" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g id="movil-jordi" style="display:none">
+        <rect x="142" y="770" width="52" height="92" rx="10" fill="#1E2230" stroke="#0A1A44" stroke-width="3"/>
+        <rect x="148" y="778" width="40" height="70" rx="6" fill="#2E5BD6"/>
+      </g>
+      <circle id="hand-left" cx="172" cy="836" r="31" fill="#E0A27E"/>
+    </g>
+    <g id="arm-right">
+      <path d="M434 600 Q464 646 464 700 L386 706 Q388 660 378 640 Z" fill="#D23B32" stroke="#A3271F" stroke-width="3"/>
+      <path d="M458 698 Q470 760 456 818 L402 818 Q396 760 390 702 Z" fill="#E0A27E"/>
+      <path d="M440 730 Q434 760 438 790" stroke="#B9815F" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g id="destornillador">
+        <rect x="420" y="760" width="16" height="70" rx="6" fill="#F2B932" stroke="#8A6A10" stroke-width="3"/>
+        <rect x="425" y="704" width="6" height="60" fill="#C9CDD3" stroke="#6E747E" stroke-width="2"/>
+      </g>
+      <circle id="hand-right" cx="428" cy="836" r="31" fill="#E0A27E"/>
+    </g>
+    <!-- CUELLO -->
+    <g id="neck">
+      <rect x="266" y="465" width="68" height="90" rx="22" fill="#E0A27E"/>
+      <path d="M266 485 Q300 515 334 485 L334 507 Q300 533 266 507 Z" fill="#C88A66"/>
+      <path d="M256 540 Q300 572 344 540" stroke="#A3271F" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- CABEZA (pivota en la base del cuello, 300,485) -->
+    <g id="head" transform="translate(0 45)">
+      <ellipse cx="183" cy="312" rx="20" ry="30" fill="#E0A27E"/>
+      <ellipse cx="417" cy="312" rx="20" ry="30" fill="#E0A27E"/>
+      <ellipse cx="185" cy="312" rx="9" ry="16" fill="#C88A66"/>
+      <ellipse cx="415" cy="312" rx="9" ry="16" fill="#C88A66"/>
+      <ellipse id="face" cx="300" cy="300" rx="118" ry="136" fill="#E0A27E"/>
+      <!-- barba castaña corta -->
+      <path id="barba" d="M184 300 Q186 410 250 432 Q300 448 350 432 Q414 410 416 300 Q404 350 380 368 Q350 382 300 376 Q250 382 220 368 Q196 350 184 300 Z" fill="#6B4226"/>
+      <path d="M262 380 Q300 368 338 380 Q330 392 300 390 Q270 392 262 380 Z" fill="#6B4226"/>
+      <g id="hair">
+        <path d="M186 268 Q180 186 240 160 Q300 140 360 160 Q420 186 414 268 Q404 230 384 214 Q340 196 300 200 Q258 196 216 214 Q196 230 186 268 Z" fill="#6B4226"/>
+        <path d="M216 214 Q240 186 290 182 Q262 170 236 176 Z M300 200 Q340 180 384 214 Q360 180 330 176 Z" fill="#5A361E"/>
+        <!-- gafas de protección subidas en la frente -->
+        <g id="gafas-prot">
+          <path d="M184 222 Q300 196 416 222" stroke="#2E3440" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <rect x="216" y="196" width="78" height="46" rx="20" fill="#86D2D7" fill-opacity="0.75" stroke="#2E3440" stroke-width="7"/>
+          <rect x="306" y="196" width="78" height="46" rx="20" fill="#86D2D7" fill-opacity="0.75" stroke="#2E3440" stroke-width="7"/>
+          <rect x="290" y="210" width="20" height="14" rx="5" fill="#2E3440"/>
+          <path d="M228 206 L244 206 M318 206 L334 206" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+        </g>
+      </g>
+      <g id="brows">
+        <path d="M228 264 Q256 252 284 260" stroke="#4A2C16" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M316 260 Q344 252 372 264" stroke="#4A2C16" stroke-width="14" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="eyes">
+        <g class="eye">
+          <ellipse cx="258" cy="302" rx="21" ry="19" fill="#fff"/>
+          <circle cx="259" cy="304" r="12" fill="#5A3A22"/>
+          <circle cx="259" cy="304" r="6.5" fill="#120C08"/>
+          <circle cx="263" cy="299" r="3.6" fill="#fff"/>
+          <path d="M236 293 Q258 286 280 293" stroke="#2A1A10" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="eye">
+          <ellipse cx="342" cy="302" rx="21" ry="19" fill="#fff"/>
+          <circle cx="343" cy="304" r="12" fill="#5A3A22"/>
+          <circle cx="343" cy="304" r="6.5" fill="#120C08"/>
+          <circle cx="347" cy="299" r="3.6" fill="#fff"/>
+          <path d="M320 293 Q342 286 364 293" stroke="#2A1A10" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+      <path id="nose" d="M302 312 Q288 344 298 354 Q308 358 316 350" stroke="#C88A66" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="226" cy="340" r="16" fill="#E58C8C" opacity="0.3"/>
+      <circle cx="374" cy="340" r="16" fill="#E58C8C" opacity="0.3"/>
+      <g id="mouth">
+        <path d="M272 398 Q300 418 328 398 Q300 408 272 398 Z" fill="#7A2E28"/>
+        <path d="M270 397 Q300 422 330 397" stroke="#4A2016" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>

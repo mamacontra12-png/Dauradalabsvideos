@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <!--
+    Aura, la asistente de IA de Daurada Labs. Personaje ficticio.
+    Capas con id fijo (el vídeo las anima por id; no cambiar los ids):
+      aura-halo, aura-sombra, aura-flota, aura-antena, aura-orbe, aura-orbe-brillo, aura-lazo,
+      aura-auriculares, aura-cabeza, aura-pantalla, aura-ojos, aura-mejillas, aura-boca,
+      aura-boca-abierta, aura-cuerpo, aura-brazo-izq, aura-brazo-der, aura-ondas
+    Centros de giro: ojos (400,374) · boca (400,436) · hombro derecho (505,712) · orbe (400,196)
+  -->
+  <defs>
+    <linearGradient id="aura-g-azul" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5E90FF"/>
+      <stop offset="1" stop-color="#2358D6"/>
+    </linearGradient>
+    <linearGradient id="aura-g-oro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE08A"/>
+      <stop offset="0.5" stop-color="#F2B92E"/>
+      <stop offset="1" stop-color="#C98A10"/>
+    </linearGradient>
+    <radialGradient id="aura-g-halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#F2B92E" stop-opacity="0.38"/>
+      <stop offset="0.55" stop-color="#F2B92E" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#F2B92E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aura-g-orbe" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE9A8" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#F2B92E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g id="aura-halo">
+    <circle cx="400" cy="500" r="340" fill="url(#aura-g-halo)"/>
+    <circle cx="400" cy="500" r="330" fill="none" stroke="#F2B92E" stroke-opacity="0.35" stroke-width="3"/>
+    <circle cx="400" cy="500" r="262" fill="none" stroke="#F2B92E" stroke-opacity="0.45" stroke-width="3"/>
+  </g>
+
+  <ellipse id="aura-sombra" cx="400" cy="900" rx="140" ry="22" fill="#061033" fill-opacity="0.55"/>
+
+  <g id="aura-flota">
+    <g id="aura-antena">
+      <rect x="393" y="205" width="14" height="52" rx="4" fill="#3C7BFF"/>
+      <circle id="aura-orbe-brillo" cx="400" cy="196" r="48" fill="url(#aura-g-orbe)"/>
+      <circle id="aura-orbe" cx="400" cy="196" r="22" fill="url(#aura-g-oro)"/>
+    </g>
+
+    <!-- Cuerpo: cuello, brazos, vestido e insignia -->
+    <g id="aura-cuerpo">
+      <rect x="368" y="510" width="64" height="140" fill="#1F4FC4"/>
+      <g id="aura-brazo-izq">
+        <path d="M296,712 L228,798" stroke="#2358D6" stroke-width="44" stroke-linecap="round" fill="none"/>
+        <circle cx="226" cy="800" r="27" fill="url(#aura-g-oro)"/>
+      </g>
+      <g id="aura-brazo-der">
+        <path d="M505,712 L598,640" stroke="#2358D6" stroke-width="44" stroke-linecap="round" fill="none"/>
+        <circle cx="602" cy="636" r="29" fill="url(#aura-g-oro)"/>
+        <path id="aura-ondas" d="M640,590 Q670,628 642,666" stroke="#F2B92E" stroke-width="8" stroke-linecap="round" fill="none"/>
+      </g>
+      <path d="M338,640 Q400,618 462,640 L532,840 Q400,880 268,840 Z" fill="url(#aura-g-azul)"/>
+      <path d="M262,840 Q400,892 538,840" stroke="url(#aura-g-oro)" stroke-width="10" stroke-linecap="round" fill="none"/>
+      <circle cx="400" cy="750" r="52" fill="#0A1A44" stroke="#9C8A5C" stroke-width="3"/>
+      <g id="aura-logo-dl" transform="translate(400 750) scale(0.2294) translate(-174 -158)"><defs>
+    <linearGradient id="aura-dlGold" gradientUnits="userSpaceOnUse" x1="30" y1="280" x2="260" y2="30">
+      <stop offset="0" stop-color="#BF8B4B"/>
+      <stop offset="0.55" stop-color="#E2BC74"/>
+      <stop offset="1" stop-color="#F0D597"/>
+    </linearGradient>
+    <linearGradient id="aura-dlTeal" gradientUnits="userSpaceOnUse" x1="60" y1="270" x2="300" y2="40">
+      <stop offset="0" stop-color="#3E9AAE"/>
+      <stop offset="1" stop-color="#86D2D7"/>
+    </linearGradient>
+    <linearGradient id="aura-dlHair" gradientUnits="userSpaceOnUse" x1="0" y1="27" x2="0" y2="60">
+      <stop offset="0" stop-color="#E9E3C4"/>
+      <stop offset="1" stop-color="#7FCFD5"/>
+    </linearGradient>
+    <radialGradient id="aura-dlGlow">
+      <stop offset="0" stop-color="#DFFBFF" stop-opacity="1"/>
+      <stop offset="0.35" stop-color="#9BEAF2" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#5FD0DE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="17">
+    <!-- d: palo + panza dorada -->
+    <path d="M181 26 L181 126 A88 88 0 1 0 179 250 L256 140 L256 46" stroke="url(#aura-dlGold)"/>
+    <!-- horquilla de arriba (dorado a turquesa) -->
+    <path d="M256 46 A18 18 0 0 0 220 46" stroke="url(#aura-dlHair)"/>
+    <path d="M220 46 L220 146" stroke="url(#aura-dlTeal)"/>
+    <!-- c turquesa interior -->
+    <path d="M158 158 A50 50 0 1 0 112 238 L200 166" stroke="url(#aura-dlTeal)"/>
+    <!-- L pequeña con punto -->
+    <path d="M250 180 L250 214 Q250 229 265 229 L300 229" stroke="url(#aura-dlTeal)"/>
+    <!-- curva de abajo -->
+    <path d="M222 206 L222 240 Q222 265 247 265 L300 265" stroke="url(#aura-dlTeal)"/>
+  </g>
+  <circle cx="306" cy="230" r="30" fill="url(#aura-dlGlow)"/>
+  <circle cx="306" cy="230" r="10" fill="#E8FDFF"/>
+</g>
+    </g>
+
+    <!-- Auriculares laterales con asas doradas -->
+    <g id="aura-auriculares">
+      <path d="M232,424 C190,486 196,548 234,584" stroke="url(#aura-g-oro)" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <path d="M568,424 C610,486 604,548 566,584" stroke="url(#aura-g-oro)" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <circle cx="234" cy="584" r="17" fill="url(#aura-g-oro)"/>
+      <circle cx="566" cy="584" r="17" fill="url(#aura-g-oro)"/>
+    </g>
+
+    <g id="aura-cabeza">
+      <rect x="238" y="250" width="324" height="270" rx="112" fill="url(#aura-g-azul)"/>
+      <rect x="212" y="344" width="36" height="86" rx="18" fill="url(#aura-g-oro)"/>
+      <rect x="552" y="344" width="36" height="86" rx="18" fill="url(#aura-g-oro)"/>
+      <rect id="aura-pantalla" x="276" y="288" width="248" height="196" rx="60" fill="#0A1A44" stroke="#9C8A5C" stroke-width="2"/>
+    </g>
+
+    <g id="aura-mejillas" fill="#B06A8A" fill-opacity="0.85">
+      <circle cx="316" cy="426" r="17"/>
+      <circle cx="484" cy="426" r="17"/>
+    </g>
+
+    <g id="aura-ojos">
+      <ellipse cx="348" cy="374" rx="26" ry="36" fill="url(#aura-g-oro)"/>
+      <ellipse cx="452" cy="374" rx="26" ry="36" fill="url(#aura-g-oro)"/>
+      <circle cx="357" cy="362" r="8" fill="#FFF8E1"/>
+      <circle cx="461" cy="362" r="8" fill="#FFF8E1"/>
+      <g stroke="#F2B92E" stroke-width="7" stroke-linecap="round">
+        <path d="M306,340 L324,350"/>
+        <path d="M318,322 L331,338"/>
+        <path d="M336,314 L342,332"/>
+        <path d="M494,340 L476,350"/>
+        <path d="M482,322 L469,338"/>
+        <path d="M464,314 L458,332"/>
+      </g>
+    </g>
+
+    <path id="aura-boca-abierta" d="M364,434 Q400,442 436,434 Q432,480 400,482 Q368,480 364,434 Z" fill="#F2B92E" opacity="0"/>
+    <path id="aura-boca" d="M362,432 Q400,470 438,432" stroke="#F2B92E" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+    <g id="aura-lazo">
+      <path d="M296,270 L238,240 Q226,268 236,296 Z" fill="url(#aura-g-oro)" stroke="#C98A10" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M296,270 L354,240 Q366,268 356,296 Z" fill="url(#aura-g-oro)" stroke="#C98A10" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="296" cy="270" r="15" fill="#FFE08A" stroke="#C98A10" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

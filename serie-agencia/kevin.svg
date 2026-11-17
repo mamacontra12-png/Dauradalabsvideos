@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <g id="kevin">
+    <!-- SUDADERA -->
+    <g id="torso">
+      <path d="M178 602 Q185 552 252 540 L348 540 Q415 552 422 602 L428 900 L172 900 Z" fill="#F5F5F3" stroke="#BFC4CB" stroke-width="3"/>
+      <path d="M215 785 L385 785 L404 880 L196 880 Z" fill="none" stroke="#BFC4CB" stroke-width="4" stroke-linejoin="round"/>
+      <ellipse id="hood-back" cx="300" cy="538" rx="98" ry="44" fill="#D6D9DE"/>
+    </g>
+    <!-- BRAZOS (pivotan en el hombro) -->
+    <g id="arm-left">
+      <path d="M168 600 Q128 700 138 805 L206 810 Q200 720 222 640 Z" fill="#F5F5F3" stroke="#BFC4CB" stroke-width="3"/>
+      <rect x="134" y="790" width="76" height="22" rx="10" fill="#D6D9DE"/>
+      <circle id="hand-left" cx="172" cy="836" r="30" fill="#E7B894"/>
+    </g>
+    <g id="arm-right">
+      <path d="M432 600 Q472 700 462 805 L394 810 Q400 720 378 640 Z" fill="#F5F5F3" stroke="#BFC4CB" stroke-width="3"/>
+      <rect x="390" y="790" width="76" height="22" rx="10" fill="#D6D9DE"/>
+      <circle id="hand-right" cx="428" cy="836" r="30" fill="#E7B894"/>
+    </g>
+    <!-- CUELLO -->
+    <g id="neck">
+      <rect x="268" y="465" width="64" height="90" rx="22" fill="#E7B894"/>
+      <path d="M268 485 Q300 515 332 485 L332 507 Q300 533 268 507 Z" fill="#CF9C76"/>
+      <path d="M266 540 L300 588 L334 540 Z" fill="#8E2F3A"/>
+    </g>
+    <!-- CAPUCHA DELANTE + CORDONES -->
+    <g id="hood-front">
+      <path d="M206 538 Q222 614 300 618 L300 596 Q256 590 250 542 Z" fill="#F5F5F3" stroke="#BFC4CB" stroke-width="3"/>
+      <path d="M394 538 Q378 614 300 618 L300 596 Q344 590 350 542 Z" fill="#F5F5F3" stroke="#BFC4CB" stroke-width="3"/>
+
+      <path d="M282 606 Q276 640 278 682" stroke="#C9CCD1" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M318 606 Q324 640 322 682" stroke="#C9CCD1" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="273" y="680" width="10" height="16" rx="3" fill="#F2B932"/>
+      <rect x="317" y="680" width="10" height="16" rx="3" fill="#F2B932"/>
+      <g id="logo-dl" transform="translate(370 705)">
+        <defs>
+    <linearGradient id="dlkevinGold" gradientUnits="userSpaceOnUse" x1="30" y1="280" x2="260" y2="30">
+      <stop offset="0" stop-color="#BF8B4B"/>
+      <stop offset="0.55" stop-color="#E2BC74"/>
+      <stop offset="1" stop-color="#F0D597"/>
+    </linearGradient>
+    <linearGradient id="dlkevinTeal" gradientUnits="userSpaceOnUse" x1="60" y1="270" x2="300" y2="40">
+      <stop offset="0" stop-color="#3E9AAE"/>
+      <stop offset="1" stop-color="#86D2D7"/>
+    </linearGradient>
+    <linearGradient id="dlkevinHair" gradientUnits="userSpaceOnUse" x1="0" y1="27" x2="0" y2="60">
+      <stop offset="0" stop-color="#E9E3C4"/>
+      <stop offset="1" stop-color="#7FCFD5"/>
+    </linearGradient>
+    <radialGradient id="dlkevinGlow">
+      <stop offset="0" stop-color="#DFFBFF" stop-opacity="1"/>
+      <stop offset="0.35" stop-color="#9BEAF2" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#5FD0DE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+        <circle r="34.0" fill="#0A1A44" stroke="#F2B932" stroke-width="2.5"/>
+        <g transform="scale(0.1646) translate(-178 -152)">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="17">
+    <!-- d: palo + panza dorada -->
+    <path d="M181 26 L181 126 A88 88 0 1 0 179 250 L256 140 L256 46" stroke="url(#dlkevinGold)"/>
+    <!-- horquilla de arriba (dorado a turquesa) -->
+    <path d="M256 46 A18 18 0 0 0 220 46" stroke="url(#dlkevinHair)"/>
+    <path d="M220 46 L220 146" stroke="url(#dlkevinTeal)"/>
+    <!-- c turquesa interior -->
+    <path d="M158 158 A50 50 0 1 0 112 238 L200 166" stroke="url(#dlkevinTeal)"/>
+    <!-- L pequeña con punto -->
+    <path d="M250 180 L250 214 Q250 229 265 229 L300 229" stroke="url(#dlkevinTeal)"/>
+    <!-- curva de abajo -->
+    <path d="M222 206 L222 240 Q222 265 247 265 L300 265" stroke="url(#dlkevinTeal)"/>
+  </g>
+  <circle cx="306" cy="230" r="30" fill="url(#dlkevinGlow)"/>
+  <circle cx="306" cy="230" r="10" fill="#E8FDFF"/>
+</g>
+      </g>
+    </g>
+    <!-- CABEZA (pivota en la base del cuello, 300,485) -->
+    <g id="head" transform="translate(0 45)">
+      <ellipse cx="183" cy="312" rx="20" ry="30" fill="#E7B894"/>
+      <ellipse cx="417" cy="312" rx="20" ry="30" fill="#E7B894"/>
+      <ellipse cx="185" cy="312" rx="9" ry="16" fill="#CF9C76"/>
+      <ellipse cx="415" cy="312" rx="9" ry="16" fill="#CF9C76"/>
+      <ellipse id="face" cx="300" cy="300" rx="118" ry="136" fill="#E7B894"/>
+      <!-- degradado de los lados (fade) -->
+      <path d="M185 298 Q181 250 199 220 Q206 258 205 298 Q195 302 185 298 Z" fill="#2A1D16" opacity="0.38"/>
+      <path d="M415 298 Q419 250 401 220 Q394 258 395 298 Q405 302 415 298 Z" fill="#2A1D16" opacity="0.38"/>
+      <g id="hair">
+        <path d="M192 262 Q186 196 232 168 Q300 132 368 168 Q414 196 408 262 Q396 232 372 224 Q300 206 228 224 Q204 232 192 262 Z" fill="#2A1D16"/>
+        <circle cx="215.7" cy="227.8" r="19.6" fill="#2A1D16"/>
+        <circle cx="228.5" cy="194.7" r="17.0" fill="#2A1D16"/>
+        <circle cx="252.2" cy="176.1" r="18.7" fill="#2A1D16"/>
+        <circle cx="283.2" cy="158.5" r="16.1" fill="#2A1D16"/>
+        <circle cx="316.8" cy="167.5" r="20.5" fill="#2A1D16"/>
+        <circle cx="347.8" cy="172.1" r="15.7" fill="#2A1D16"/>
+        <circle cx="371.5" cy="198.7" r="19.3" fill="#2A1D16"/>
+        <circle cx="384.3" cy="218.8" r="16.4" fill="#2A1D16"/>
+        <circle cx="190.0" cy="236.0" r="17.0" fill="#2A1D16"/>
+        <circle cx="198.4" cy="198.3" r="14.4" fill="#2A1D16"/>
+        <circle cx="222.2" cy="176.8" r="19.0" fill="#2A1D16"/>
+        <circle cx="257.9" cy="148.7" r="15.6" fill="#2A1D16"/>
+        <circle cx="300.0" cy="150.0" r="18.4" fill="#2A1D16"/>
+        <circle cx="342.1" cy="151.7" r="15.0" fill="#2A1D16"/>
+        <circle cx="377.8" cy="177.8" r="19.5" fill="#2A1D16"/>
+        <circle cx="401.6" cy="197.3" r="15.3" fill="#2A1D16"/>
+        <circle cx="410.0" cy="237.0" r="17.9" fill="#2A1D16"/>
+        <path d="M190.4 199.8 q1.4 -10.8 9.4 -8.7 q6.5 2.9 1.4 8.7" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M211.7 178.7 q1.9 -14.3 12.4 -11.4 q8.6 3.8 1.9 11.4" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M249.3 150.3 q1.6 -11.7 10.2 -9.4 q7.0 3.1 1.6 9.4" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M289.9 151.8 q1.8 -13.8 11.9 -11.0 q8.3 3.7 1.8 11.0" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M333.9 153.2 q1.5 -11.2 9.7 -9.0 q6.7 3.0 1.5 9.0" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M367.0 179.7 q2.0 -14.7 12.7 -11.7 q8.8 3.9 2.0 11.7" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M393.2 198.9 q1.5 -11.5 9.9 -9.2 q6.9 3.1 1.5 9.2" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M219.2 196.4 q1.7 -12.7 11.0 -10.2 q7.6 3.4 1.7 10.2" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M241.9 178.0 q1.9 -14.1 12.2 -11.2 q8.4 3.7 1.9 11.2" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M274.4 160.1 q1.6 -12.0 10.4 -9.6 q7.2 3.2 1.6 9.6" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M305.5 169.6 q2.1 -15.4 13.3 -12.3 q9.2 4.1 2.1 12.3" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M339.1 173.7 q1.6 -11.8 10.2 -9.4 q7.1 3.1 1.6 9.4" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+        <path d="M360.9 200.6 q1.9 -14.5 12.5 -11.6 q8.7 3.9 1.9 11.6" stroke="#4A362A" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.95"/>
+      </g>
+      <g id="brows">
+        <path d="M230 266 Q256 252 284 260" stroke="#1B120D" stroke-width="15" fill="none" stroke-linecap="round"/>
+        <path d="M316 260 Q344 252 370 266" stroke="#1B120D" stroke-width="15" fill="none" stroke-linecap="round"/>
+      </g>
+      <g id="eyes">
+        <g class="eye">
+        <ellipse cx="258" cy="302" rx="22" ry="20" fill="#fff"/>
+        <circle cx="260" cy="304" r="13" fill="#4A2C1C"/>
+        <circle cx="260" cy="304" r="7" fill="#120C08"/>
+        <circle cx="264" cy="299" r="4" fill="#fff"/>
+        <path d="M235 302 Q235 281 258 281 Q281 281 281 302 L281 292.0 Q258 288.0 235 292.0 Z" fill="#E7B894"/>
+        <path d="M234 292.0 Q258 286.0 282 292.0" stroke="#1B120D" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+        <g class="eye">
+        <ellipse cx="342" cy="302" rx="22" ry="20" fill="#fff"/>
+        <circle cx="344" cy="304" r="13" fill="#4A2C1C"/>
+        <circle cx="344" cy="304" r="7" fill="#120C08"/>
+        <circle cx="348" cy="299" r="4" fill="#fff"/>
+        <path d="M319 302 Q319 281 342 281 Q365 281 365 302 L365 292.0 Q342 288.0 319 292.0 Z" fill="#E7B894"/>
+        <path d="M318 292.0 Q342 286.0 366 292.0" stroke="#1B120D" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+      </g>
+      <path id="nose" d="M302 312 Q290 344 298 354 Q306 358 314 350" stroke="#CF9C76" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="232" cy="352" r="18" fill="#E58C8C" opacity="0.32"/>
+      <circle cx="368" cy="352" r="18" fill="#E58C8C" opacity="0.32"/>
+
+      <g id="mouth">
+        <path d="M268 390 Q300 414 332 390 Q300 402 268 390 Z" fill="#7A3A32"/>
+        <path d="M280 404 Q300 414 320 404" stroke="#C47A70" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M266 389 Q300 418 334 389" stroke="#6B3029" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>

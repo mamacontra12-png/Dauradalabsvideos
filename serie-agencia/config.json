@@ -1,0 +1,12 @@
+{
+  "A": {"SEGUIDOR": "@castillacurulla", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": ["@usuario1", "@usuario2", "@usuario3", "@usuario4", "@usuario5", "@usuario6"]},
+  "B": {"SEGUIDOR": "@angibanx.ar", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": [], "AYER": ""},
+  "C": {"SEGUIDOR": "@_hevertt_06", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": []},
+  "voces": {
+    "kevin": {"nombre": "es-ES-AlvaroNeural", "pitch": "+15Hz", "rate": "+2%"},
+    "riyad": {"nombre": "es-ES-AlvaroNeural", "pitch": "+9Hz", "rate": "-3%"},
+    "lolo": {"nombre": "es-ES-AlvaroNeural", "pitch": "+0Hz", "rate": "-4%"}
+  },
+  "pausa": 0.15,
+  "cola": 1.25
+}
