@@ -1,3 +1,12 @@
+# ⚠️ REPOSITORIO ARCHIVADO — NO TRABAJES AQUÍ
+
+Todo este trabajo se volcó al repositorio compartido de Kevin y Riyad:
+**`keeviinbrzz/creaci-n-de-contenido-de-daurada-labs`** (en la sesión, `/home/user/creaci-n-de-contenido-de-daurada-labs`).
+Ese es el **único repositorio de trabajo**: haz allí cualquier vídeo o cambio y sigue su `CLAUDE.md`.
+No edites, no renderices y no hagas commits en este repositorio. Lo de abajo es solo el histórico.
+
+---
+
 # Contexto para Claude Code — Dauradalabs Videos
 
 Repositorio de los Reels de Daurada Labs (serie "Montando una agencia y consultoría de IA desde cero").

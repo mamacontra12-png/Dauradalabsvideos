@@ -1,3 +1,5 @@
+> ⚠️ **Archivado.** Este repositorio ya no se usa: todo está en `keeviinbrzz/creaci-n-de-contenido-de-daurada-labs`.
+
 # Dauradalabs Videos
 
 Reels de la serie **"Montando una agencia y consultoría de IA desde cero"** de **Daurada Labs** (Kevin y Riyad, Tarragona).
