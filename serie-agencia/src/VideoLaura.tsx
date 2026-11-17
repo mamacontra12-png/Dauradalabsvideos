@@ -114,7 +114,7 @@ const Calle: React.FC<{
         style={{
           position: 'absolute',
           left: lerp(650, 335, c),
-          top: lerp(1360, 1060, c),
+          top: lerp(1360, 1100, c),
           width: 260,
           height: 92,
           borderRadius: 14,
@@ -384,20 +384,77 @@ const Lolo: React.FC<Ctx> = ({l, frame, e, vol}) => {
 };
 
 // 5 · Sube el contador y el cartel de Laura se enciende
-const PASOS = [4, 20, 60, 120];
-const Cartel: React.FC<Ctx> = ({l, frame, e}) => {
-  const paso = (i: number) => 3 + i * Math.max(6, Math.floor((e.dur - 14) / 4));
-  const n = PASOS.reduce((acc, v, i) => (l >= paso(i) ? v : acc), 4);
-  const crece = clamp01((l - paso(1)) / 22);
+const PASOS = [4, 40, 80, 120];
+/** Reseñas de ejemplo (inventadas) que entran como notificaciones, alternando lados. */
+const RESENAS: [string, string, string][] = [
+  ['María', '#E5484D', 'Laura, ¡servicio de 10! 💛'],
+  ['Javi', '#3E9AAE', '¡Sin esperas y súper amables!'],
+  ['Ana', '#8E5CC8', 'Mi hijo ya no tiene miedo 😄'],
+  ['Pedro', '#2FD27A', 'Me atendieron rapidísimo 👌'],
+  ['Carmen', '#E07B39', 'Laura es un sol ☀️'],
+  ['Luis', '#1D3E9E', 'Te lo explican todo clarísimo'],
+  ['Sonia', '#C2512A', 'Repetiré seguro 🙌'],
+  ['Ramón', '#6E6A66', '¡Ahora sí: cinco estrellas! 😂'],
+];
+/** Fotograma en que entra la notificación i. */
+const tNotif = (i: number) => 4 + i * 10;
+const tPaso = (i: number) => [0, 2, 5, 7].map(tNotif)[i];
+
+const Notif: React.FC<{i: number; l: number; frame: number}> = ({i, l, frame}) => {
+  const t0 = tNotif(i);
+  if (l < t0) return null;
+  const izq = i % 2 === 0;
+  const p = easeOut((l - t0) / 8);
+  const k = pop(l, t0, 0.12);
+  const [nombre, color, texto] = RESENAS[i];
+  return (
+    <div style={{position: 'absolute', top: 170 + i * 100, [izq ? 'left' : 'right']: izq ? 30 : 150, width: 700, transform: `translateX(${(1 - p) * (izq ? -760 : 760)}px) rotate(${izq ? -1.5 : 1.5}deg) scale(${Math.max(0, k)})`, transformOrigin: izq ? '0 50%' : '100% 50%', zIndex: i}}>
+      <div style={{display: 'flex', alignItems: 'center', gap: 16, background: '#fff', borderRadius: 26, padding: '14px 18px', boxShadow: '0 12px 0 rgba(6,12,40,.35)', border: `4px solid ${K.oro}`, fontFamily: FUENTE}}>
+        <div style={{width: 64, height: 64, borderRadius: 32, background: color, color: '#fff', fontWeight: 900, fontSize: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{nombre[0]}</div>
+        <div style={{flex: 1, minWidth: 0}}>
+          <div style={{display: 'flex', alignItems: 'center', gap: 10, fontWeight: 900, fontSize: 25, color: K.navy}}>
+            {nombre} <span style={{fontSize: 24}}>⭐⭐⭐⭐⭐</span>
+          </div>
+          <div style={{fontWeight: 700, fontSize: 27, color: '#1B2440', lineHeight: 1.15, marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{texto}</div>
+        </div>
+        <div style={{background: K.verde, color: '#fff', fontWeight: 900, fontSize: 30, borderRadius: 18, padding: '6px 12px', flexShrink: 0, transform: `scale(${1 + 0.15 * Math.exp(-(l - t0) / 5) * Math.sin(frame)})`}}>+1</div>
+      </div>
+    </div>
+  );
+};
+
+/** Destellos dorados alrededor del cartel de Laura. */
+const Destellos: React.FC<{l: number; t0: number}> = ({l, t0}) => (
+  <SVG>
+    {[...Array(10)].map((_, i) => {
+      const t = (l - t0 - i * 3) / 18;
+      if (t < 0 || t > 1) return null;
+      const a = (i / 10) * Math.PI * 2;
+      const r = 200 + 260 * t;
+      return <path key={i} d="M0,-14 C2,-4 4,-2 14,0 C4,2 2,4 0,14 C-2,4 -4,2 -14,0 C-4,-2 -2,-4 0,-14 Z" fill={K.oro} opacity={1 - t} transform={`translate(${520 + Math.cos(a) * r} ${1200 + Math.sin(a) * r * 0.45}) scale(${1.6 - t})`} />;
+    })}
+  </SVG>
+);
+
+const Cartel: React.FC<Ctx> = ({l, frame}) => {
+  const fin = tNotif(RESENAS.length - 1);
+  // por tramos: 4 → 40 → 80 → 120, sincronizado con los hitos de arriba
+  const tramo = Math.max(0, PASOS.findIndex((_, i) => i === PASOS.length - 1 || l < tPaso(i + 1)));
+  const n = tramo >= PASOS.length - 1 ? PASOS[PASOS.length - 1] : Math.round(lerp(PASOS[tramo], PASOS[tramo + 1], clamp01((l - tPaso(tramo)) / (tPaso(tramo + 1) - tPaso(tramo)))));
+  const crece = clamp01((l - tNotif(1)) / 24);
   return (
     <AbsoluteFill>
       <Calle frame={frame} crece={crece} resenas={n} falla={crece > 0.6} laura={{x: 230, y: 1300, ancho: 400, pose: {brazoD: -150 * easeOut(crece), brazoI: 150 * easeOut(crece), y: -Math.abs(Math.sin(frame / 3)) * 10 * crece}}} />
-      <div style={{position: 'absolute', top: 44, left: 40, right: 150, display: 'flex', justifyContent: 'center'}}>
-        <div style={{background: 'rgba(10,20,60,.9)', border: `5px solid ${K.oro}`, borderRadius: 30, padding: '12px 26px', fontFamily: FUENTE, fontWeight: 900, fontSize: 64, color: '#fff', display: 'flex', gap: 16, alignItems: 'center'}}>
+      <Destellos l={l} t0={fin} />
+      {RESENAS.map((_, i) => (
+        <Notif key={i} i={i} l={l} frame={frame} />
+      ))}
+      <div style={{position: 'absolute', top: 44, left: 40, right: 150, display: 'flex', justifyContent: 'center', zIndex: 20}}>
+        <div style={{background: 'rgba(10,20,60,.92)', border: `5px solid ${K.oro}`, borderRadius: 30, padding: '12px 26px', fontFamily: FUENTE, fontWeight: 900, fontSize: 64, color: '#fff', display: 'flex', gap: 16, alignItems: 'center'}}>
           {PASOS.map((v, i) => (
             <React.Fragment key={v}>
-              {i > 0 && <span style={{color: K.oro, opacity: l >= paso(i) ? 1 : 0.25}}>→</span>}
-              <span style={{color: i === 3 ? K.oro : '#fff', opacity: l >= paso(i) ? 1 : 0.25, display: 'inline-block', transform: `scale(${l >= paso(i) ? pop(l, paso(i), 0.3) : 1})`}}>{v}</span>
+              {i > 0 && <span style={{color: K.oro, opacity: l >= tPaso(i) ? 1 : 0.25}}>→</span>}
+              <span style={{color: i === 3 ? K.oro : '#fff', opacity: l >= tPaso(i) ? 1 : 0.25, display: 'inline-block', transform: `scale(${l >= tPaso(i) ? pop(l, tPaso(i), 0.35) : 1})`}}>{v}</span>
             </React.Fragment>
           ))}
           <span>⭐</span>
@@ -511,7 +568,6 @@ export const VideoLaura: React.FC<PropsReel> = (props) => (
       const f = L.esc('final')!;
       const fin = z.finVoz - z.desde;
       const tercio = p.dur / 3;
-      const paso = (i: number) => 3 + i * Math.max(6, Math.floor((ct.dur - 14) / 4));
       return [
         [ca.desde + ca.at('cuatro'), 'boing', 0.25],
         [z.desde + fin + 2, 'whoosh', 0.25],
@@ -521,9 +577,10 @@ export const VideoLaura: React.FC<PropsReel> = (props) => (
         [p.desde + Math.round(tercio) + 4, 'risa', 0.15],
         [lo.desde + lo.at('WhatsApp'), 'vibra', 0.25],
         [lo.desde + lo.at('enlace'), 'pop', 0.22],
-        ...PASOS.map((_, i) => [ct.desde + paso(i), 'tick', 0.3] as Sfx),
-        [ct.desde + paso(3) + 4, 'ding', 0.3],
-        [ct.desde + paso(2), 'zzzt', 0.15],
+        ...RESENAS.map((_, i) => [ct.desde + tNotif(i), i % 2 ? 'pop' : 'tick', 0.22] as Sfx),
+        ...PASOS.slice(1).map((_, i) => [ct.desde + tPaso(i + 1), 'ding', 0.18] as Sfx),
+        [ct.desde + tNotif(RESENAS.length - 1) + 2, 'ding', 0.32],
+        [ct.desde + tNotif(4), 'zzzt', 0.15],
         [t.desde + t.at('gracias'), 'pop', 0.22],
         [f.desde + 14, 'ding', 0.2],
         [f.desde + f.at('Comenta') - 2, 'whoosh', 0.25],

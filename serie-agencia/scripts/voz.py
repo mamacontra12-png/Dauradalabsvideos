@@ -49,7 +49,7 @@ def guion(cfg, video):
             ("zinco", "paciente", "¡Ziinco ezztrelluaz!"),
             ("persigue", "lolo", "Desde entonces, Laura caza reseñas."),
             ("lolo", "lolo", "Tranquila, Laura: horas después de la cita, ya sin anestesia, le llega un WhatsApp con el enlace para la reseña."),
-            ("cartel", None, 1.7),  # sin voz: el contador sube y el cartel de Laura se enciende
+            ("cartel", None, 3.2),  # sin voz: entran reseñas como notificaciones, el contador sube y el cartel de Laura se enciende
             ("truco", "lolo", "Truco gratis: responde a todas tus reseñas, aunque sea con un gracias."),
             ("final", "lolo", "¿Tu negocio tiene pocas reseñas? Comenta RESEÑAS y te lo montamos."),
         ]
