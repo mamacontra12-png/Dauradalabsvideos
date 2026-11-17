@@ -29,14 +29,17 @@ def guion(cfg, video):
             ("cierre", "kevin", "Por cada mil seguidores bajamos un 1 % nuestros precios. Síguenos y sales en el próximo vídeo."),
         ]
     if video == "B":
-        ayer = cfg["B"].get("AYER", "").strip().rstrip(".")
+        # Estructura: gancho → introducción → cuerpo 1 → bucle → cuerpo 2 → bucle → cuerpo 3 (truco) → acción (+ frase que empalma con el gancho)
         return [
-            ("intro", "kevin", "¡Ya nos sigue! Día 2 de nuestra agencia de IA."),
-            *([("ayer", "riyad", f"Ayer: {ayer}.")] if ayer else []),
-            ("rosa", "lolo", "Rosa tiene una empresa de multiservicios. Tres móviles… y solo dos manos."),
-            ("agente", "lolo", "Un agente de voz coge la llamada, apunta servicio, nombre, teléfono y dirección, agenda la cita y avisa al técnico."),
-            ("truco", "riyad", "Truco gratis: en WhatsApp Business pon un mensaje de ausencia que pida nombre, dirección y qué ha pasado."),
-            ("cierre", "kevin", "Cada mil seguidores, un 1 % menos en nuestros precios. Síguenos y sales en el próximo."),
+            ("gancho", "lolo", "Tres móviles… y solo dos manos."),
+            ("intro", "kevin", "Día 2. Hoy te enseño a no perder llamadas, y al final un truco gratis que puedes usar hoy."),
+            ("cae", "lolo", "Coge uno… y se le cae otro."),
+            ("bucle1", "riyad", "Pero lo peor no es perder la llamada…"),
+            ("agente", "riyad", "…es que ese cliente llama a otro. Un agente de voz coge la llamada, apunta los datos, agenda la cita y avisa al técnico."),
+            ("bucle2", "kevin", "¿Y si todavía no quieres nada de esto? Para eso es el truco gratis."),
+            ("truco", "riyad", "En WhatsApp Business, pon un mensaje de ausencia que pida nombre, dirección y qué ha pasado."),
+            ("cierre", "kevin", "Comenta 24H. Y síguenos: cada mil seguidores bajamos un 1 %."),
+            ("bucle", "lolo", "Y Rosa sigue con…"),
         ]
     return [
         ("intro", "riyad", "¡Ya nos sigue! Día 2 montando nuestra agencia de IA."),
@@ -58,6 +61,8 @@ def hablado(texto):
             tok = m.group(1) + re.sub(r"(\w)\1{2,}", r"\1", m.group(2))  # "andreeaaa" → "andreea"
         # los puntos suspensivos se leen como una coma (sin silencio largo)
         tok = tok.replace("…", ",")
+        # "24H" se lee "veinticuatro hache" (2 palabras habladas, igual que el peso de "24H")
+        tok = re.sub(r"^24H", "veinticuatro hache", tok)
         if tok == "%":
             tok = "por_ciento"
         t.append(tok)

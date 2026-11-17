@@ -9,11 +9,12 @@ import {clamp01, easeOut, rebote} from './anim';
 import {Persona} from './Persona';
 
 // ───────────────────────── Datos ─────────────────────────
-export type VideoCfg = {SEGUIDOR: string; SEGUIDORES_ACTUALES: number; NOMBRES_PARED?: string[]; AYER?: string};
+export type VideoCfg = {SEGUIDOR: string; SEGUIDORES_ACTUALES: number; NOMBRES_PARED?: string[]; AYER?: string; COLA?: number};
 type Palabra = {w: string; start: number; end: number};
 type Frase = {id: string; hablante: string | null; archivo?: string; silencio?: number; palabras: Palabra[]; envolvente: number[]};
 export type Tiempos = {recorte: number; frases: Frase[]};
-export type PropsReel = {cfg: VideoCfg; tiempos: Tiempos; subs: boolean; pausa: number; cola: number};
+/** `portada`: solo para la portada; el fotograma 0 es el inicio de la escena "intro" (rótulo DÍA X). */
+export type PropsReel = {cfg: VideoCfg; tiempos: Tiempos; subs: boolean; pausa: number; cola: number; portada?: boolean};
 
 export const FPS = 30;
 export const K = {marino: '#0E1E4A', azul: '#1D3E9E', oro: '#F2B932', blanco: '#FFFFFF', navy: '#0A1A44', verde: '#2FD27A', turq: '#3E9AAE', turqCl: '#86D2D7', rojo: '#E5484D'};
@@ -226,7 +227,7 @@ export const Truco: React.FC<{
  * La pared no lista a todos los seguidores (no escala con miles): pósit del seguidor del día y el pósit vacío "¿tú?".
  * Contador: 1 % menos por cada 1.000 seguidores. El protagonista del vídeo se despide al fondo.
  */
-export const Cierre: React.FC<{l: number; frame: number; e: Esc; vol: (q: string) => number; cfg: VideoCfg; fondo?: React.ReactNode}> = ({l, frame, e, vol, cfg, fondo}) => {
+export const Cierre: React.FC<{l: number; frame: number; e: Esc; vol: (q: string) => number; cfg: VideoCfg; fondo?: React.ReactNode; children?: React.ReactNode}> = ({l, frame, e, vol, cfg, fondo, children}) => {
   const ultimo = e.dur - 36;
   const sigue = l >= ultimo;
   const total = cfg.SEGUIDORES_ACTUALES;
@@ -273,6 +274,7 @@ export const Cierre: React.FC<{l: number; frame: number; e: Esc; vol: (q: string
       </div>
       <Persona quien="kevin" frame={frame} vol={vol('kevin')} habla={habla('kevin')} x={290} y={1215} ancho={470} pose={{brazoD: sigue ? -150 : -10, cabeza: 3}} />
       <Persona quien="riyad" frame={frame} vol={vol('riyad')} habla={habla('riyad')} x={790} y={1215} ancho={470} pose={{brazoI: sigue ? 150 : 10, cabeza: -3}} />
+      {children}
       {sigue && (
         <AbsoluteFill style={{background: 'rgba(14,30,74,.72)'}}>
           <div style={{position: 'absolute', top: 560, left: 40, right: 150, textAlign: 'center', whiteSpace: 'nowrap', fontFamily: FUENTE, fontWeight: 900, fontSize: 122, color: K.oro, textShadow: '0 8px 0 rgba(6,12,40,.55)', transform: `scale(${Math.max(0, pop(l, ultimo, 0.2))})`}}>
@@ -352,8 +354,10 @@ export type Sfx = [number, string, number];
 
 /** Monta un reel: escena actual (con entrada suave), subtítulos, voces y efectos. */
 export const Reel: React.FC<{props: PropsReel; minimos: Record<string, number>; escena: (c: Ctx) => React.ReactNode; sfx: (L: Linea) => Sfx[]; sinEntrada?: string[]}> = ({props, minimos, escena, sfx, sinEntrada = ['intro']}) => {
-  const frame = useCurrentFrame();
+  const real = useCurrentFrame();
   const L = linea(props, minimos);
+  const ip = props.portada ? (L.esc('intro') ?? L.lista[0]) : undefined;
+  const frame = ip ? ip.desde + real : real;
   const e = L.lista.find((x) => frame >= x.desde && frame < x.desde + x.dur) ?? L.lista[L.lista.length - 1];
   const l = frame - e.desde;
   const v = L.volumen(frame);

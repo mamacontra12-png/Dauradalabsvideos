@@ -1,12 +1,17 @@
-/** Vídeo B · "Día 2: los tres móviles de Rosa" (multiservicios 24/7, agente de voz). */
+/**
+ * Vídeo B · "Día 2: los tres móviles de Rosa" (multiservicios 24/7, agente de voz).
+ * Estructura: gancho → introducción → cuerpo 1 → bucle → cuerpo 2 → bucle → cuerpo 3 (truco) → acción → frase que empalma con el gancho.
+ */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {clamp01, easeIn, easeOut, rebote} from './anim';
 import {Aura} from './Aura';
-import {Cierre, Ctx, DlMark, Fondo, FUENTE, Intro, K, Linea, MovilGen, Ondas, PropsReel, Reel, Sfx, Truco, Txt, pop} from './comun';
+import {Cierre, Ctx, FUENTE, Fondo, Intro, K, Linea, MovilGen, Ondas, PropsReel, Reel, Sfx, Truco, Txt, VideoCfg, pop} from './comun';
 import {Persona} from './Persona';
 
-export const MIN_B: Record<string, number> = {intro: 3.4, ayer: 3.0, rosa: 6.2, agente: 8.2, truco: 6.4, cierre: 0};
+export const MIN_B: Record<string, number> = {gancho: 2.6, intro: 0, cae: 2.7, bucle1: 0, agente: 0, bucle2: 0, truco: 5.4, cierre: 6.4, bucle: 0};
+
+const NUNCA = 1e9;
 
 /** Vibración de una pieza del SVG de Rosa (CSS). */
 const vibraCss = (id: string, frame: number, on: boolean, fase = 0) =>
@@ -36,51 +41,31 @@ const Bocadillo: React.FC<{x: number; y: number; k: number; texto?: string}> = (
   </g>
 );
 
-// ───────── Escena "Ayer" (solo si B.AYER no está vacío) ─────────
-const Ayer: React.FC<Ctx> = ({l, frame, vol, cfg}) => (
-  <AbsoluteFill>
-    <Fondo frame={frame} />
-    <Txt top={300} size={120} color={K.oro} k={pop(l, 2)}>
-      AYER
-    </Txt>
-    <Txt top={470} size={74} k={pop(l, 8)}>
-      {cfg.AYER}
-    </Txt>
-    <Persona quien="kevin" frame={frame} vol={vol('kevin')} habla={false} x={270} y={1230} ancho={460} pose={{brazoD: -18}} />
-    <Persona quien="riyad" frame={frame} vol={vol('riyad')} habla={vol('riyad') > 0} x={790} y={1230} ancho={460} pose={{brazoI: 18}} />
-    <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
-      <rect x={-20} y={1720} width={1120} height={40} rx={14} fill="#8A5A33" stroke={K.navy} strokeWidth={6} />
-      <rect x={-20} y={1756} width={1120} height={200} fill="#6A4527" />
-      <g transform="translate(530 1720) scale(0.78)">
-        <path d="M-170,0 L170,0 L190,16 L-190,16 Z" fill="#3A3F4A" stroke={K.navy} strokeWidth={5} strokeLinejoin="round" />
-        <path d="M-150,-4 L150,-4 L130,-206 L-130,-206 Z" fill="#4A505C" stroke={K.navy} strokeWidth={6} strokeLinejoin="round" />
-        <g transform="translate(0 -108)">
-          <DlMark ancho={84} uid="ayer-dl" trazo={17} />
-        </g>
-      </g>
-    </svg>
-  </AbsoluteFill>
-);
+/** Pósit pequeño del seguidor del día (en el gancho). */
+const PositGancho: React.FC<{l: number; cfg: VideoCfg}> = ({l, cfg}) => {
+  const k = pop(l, 4, 0.2);
+  return (
+    <div style={{position: 'absolute', left: 60, top: 80, width: 400, height: 290, background: '#FFE066', borderRadius: 12, boxShadow: '0 18px 0 rgba(0,0,0,.25)', transform: `rotate(-4deg) scale(${Math.max(0, k)})`, opacity: k > 0 ? 1 : 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: FUENTE}}>
+      <div style={{position: 'absolute', top: -18, width: 140, height: 40, background: 'rgba(255,255,255,.55)', transform: 'rotate(3deg)'}} />
+      <div style={{fontWeight: 900, fontSize: Math.min(56, Math.floor(370 / (cfg.SEGUIDOR.length * 0.6))), color: K.marino, whiteSpace: 'nowrap'}}>{cfg.SEGUIDOR}</div>
+      <div style={{fontWeight: 800, fontSize: 40, color: K.marino, marginTop: 16}}>nos sigue 💛</div>
+    </div>
+  );
+};
 
-// ───────── Escena · Rosa y sus tres móviles ─────────
+// ───────── Rosa y sus tres móviles (gancho, cuerpo 1 y bucle final) ─────────
 const RX = 520;
 const RY = 600;
 const RA = 660;
 const rk = RA / 600;
 const rp = (x: number, y: number): [number, number] => [RX - RA / 2 + x * rk, RY + y * rk];
 
-const Rosa3: React.FC<Ctx> = ({l, frame, e}) => {
-  const tCoge = e.at('Tres') - 2;
-  const tSuelta = e.at('solo');
-  const tCae = e.at('manos');
+/** tCoge: coge el móvil de la izquierda · tSuelta: se le cae el de la derecha (fotogramas locales; NUNCA = no pasa). */
+const RosaEscena: React.FC<{l: number; frame: number; tCoge?: number; tSuelta?: number; children?: React.ReactNode}> = ({l, frame, tCoge = NUNCA, tSuelta = NUNCA, children}) => {
   const coge = easeOut((l - tCoge) / 8);
   const [hdx, hdy] = rp(428, 836);
   const [bx, by] = rp(372, 700);
-  const extra = [
-    l < tCoge ? vibraCss('movil-izq', frame, true) : '',
-    l < tSuelta ? vibraCss('movil-der', frame, true, 7) : oculta('movil-der'),
-    l < tCae ? vibraCss('movil-bolsillo', frame, true, 13) : oculta('movil-bolsillo'),
-  ].join('\n');
+  const extra = [vibraCss('movil-izq', frame, l < tCoge), l < tSuelta ? vibraCss('movil-der', frame, true, 7) : oculta('movil-der'), vibraCss('movil-bolsillo', frame, true, 13)].join('\n');
   const sacude = l < tCoge ? Math.sin(frame * 1.7) * 1.5 : 0;
   return (
     <AbsoluteFill>
@@ -106,47 +91,133 @@ const Rosa3: React.FC<Ctx> = ({l, frame, e}) => {
         <Persona quien="rosa" frame={frame} vol={0} habla={false} x={RX} y={RY} ancho={RA} pose={{brazoI: -160 * coge, brazoD: l >= tSuelta ? -25 * clamp01((l - tSuelta) / 6) : 0, cabeza: l >= tCoge ? -6 : Math.sin(frame / 3) * 3}} extra={extra} />
       </div>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
-        {/* escritorio delante */}
         <rect x={60} y={1560} width={960} height={40} rx={12} fill="#8A5A33" stroke={K.navy} strokeWidth={6} />
         <rect x={100} y={1596} width={880} height={130} fill="#6A4527" stroke={K.navy} strokeWidth={6} />
-        {/* ondas y bocadillos de llamada */}
         {l < tCoge && (
-          <>
-            <g transform={`translate(${rp(166, 812)[0]} ${rp(166, 812)[1]})`}>
-              <Ondas frame={frame} r={40} />
-            </g>
-            <g transform={`translate(${hdx} ${hdy - 20})`}>
-              <Ondas frame={frame + 3} r={40} />
-            </g>
-          </>
-        )}
-        {l < tCae && (
-          <g transform={`translate(${bx} ${by})`}>
-            <Ondas frame={frame + 5} r={34} />
+          <g transform={`translate(${rp(166, 812)[0]} ${rp(166, 812)[1]})`}>
+            <Ondas frame={frame} r={40} />
           </g>
         )}
+        {l < tSuelta && (
+          <g transform={`translate(${hdx} ${hdy - 20})`}>
+            <Ondas frame={frame + 3} r={40} />
+          </g>
+        )}
+        <g transform={`translate(${bx} ${by})`}>
+          <Ondas frame={frame + 5} r={34} />
+        </g>
         <Bocadillo x={150} y={1150} k={l < tCoge ? pop(l, 2) : 0} />
-        <Bocadillo x={900} y={1120} k={l < tSuelta ? pop(l, 6) : 0} />
-        <Bocadillo x={880} y={860} k={l < tCae ? pop(l, 10) : 0} />
+        <Bocadillo x={880} y={1120} k={l < tSuelta ? pop(l, 6) : 0} />
+        <Bocadillo x={860} y={860} k={pop(l, 10)} />
         {l >= tCoge && <Bocadillo x={150} y={870} k={pop(l, tCoge + 2)} texto="🗣️" />}
         {l >= tSuelta && <MovilCae x0={hdx} y0={hdy} x1={hdx + 60} y1={1800} p={(l - tSuelta) / 16} />}
-        {l >= tCae && <MovilCae x0={bx} y0={by} x1={bx - 120} y1={1820} p={(l - tCae) / 16} />}
       </svg>
-      <Txt top={430} size={70} k={pop(l, e.at('Tres'), 0.2)} rot={-2}>
-        3 móviles 📱📱📱
-      </Txt>
-      <Txt top={520} size={60} k={pop(l, e.at('manos'), 0.2)} color={K.oro} rot={2}>
-        … y 2 manos
-      </Txt>
+      {children}
     </AbsoluteFill>
   );
 };
 
-// ───────── Escena · El agente de voz ─────────
+// 1 · Gancho
+const Gancho: React.FC<Ctx> = ({l, frame, e, cfg}) => (
+  <RosaEscena l={l} frame={frame}>
+    <PositGancho l={l} cfg={cfg} />
+    <Txt top={430} size={70} k={pop(l, e.at('Tres'), 0.2)} rot={-2}>
+      3 móviles 📱📱📱
+    </Txt>
+    <Txt top={520} size={60} k={pop(l, e.at('manos'), 0.2)} color={K.oro} rot={2}>
+      … y 2 manos
+    </Txt>
+  </RosaEscena>
+);
+
+// 3 · Cuerpo 1: se le cae un móvil y la llamada se pierde
+const Cae: React.FC<Ctx> = ({l, frame, e}) => {
+  const tSuelta = e.at('cae');
+  return (
+    <RosaEscena l={l} frame={frame} tCoge={e.at('Coge')} tSuelta={tSuelta}>
+      <Txt top={440} size={76} color={K.rojo} k={pop(l, tSuelta + 16, 0.25)} rot={-3}>
+        📵 Llamada perdida
+      </Txt>
+    </RosaEscena>
+  );
+};
+
+/** Móvil grande con la llamada perdida en pantalla. */
+const MovilPerdida: React.FC<{x: number; y: number; k: number; frame: number}> = ({x, y, k, frame}) => (
+  <g transform={`translate(${x} ${y}) scale(${Math.max(0.01, k) * 1.5}) rotate(${Math.sin(frame / 10) * 2})`}>
+    <MovilGen color="#7A1F2B">
+      <text x={0} y={-30} textAnchor="middle" fontSize={70} fontFamily={FUENTE}>
+        📵
+      </text>
+      <text x={0} y={30} textAnchor="middle" fontSize={20} fontWeight={900} fill="#fff" fontFamily={FUENTE}>
+        LLAMADA
+      </text>
+      <text x={0} y={56} textAnchor="middle" fontSize={20} fontWeight={900} fill="#fff" fontFamily={FUENTE}>
+        PERDIDA
+      </text>
+    </MovilGen>
+  </g>
+);
+
+// 4 · Bucle: "Pero lo peor no es perder la llamada…"
+const Bucle1: React.FC<Ctx> = ({l, frame, e, vol}) => (
+  <AbsoluteFill>
+    <Fondo frame={frame} de="#2A2F6E" />
+    <Txt top={150} size={80} color={K.oro} k={pop(l, e.at('peor'), 0.2)}>
+      Lo peor…
+    </Txt>
+    <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+      <MovilPerdida x={465} y={620} k={rebote(l - 2, 1.2)} frame={frame} />
+    </svg>
+    <Persona quien="riyad" frame={frame} vol={vol('riyad')} habla={vol('riyad') > 0} x={500} y={1215} ancho={470} pose={{brazoD: -40, cabeza: -5}} />
+  </AbsoluteFill>
+);
+
+/** Edificio genérico (sin marca). */
+const Edificio: React.FC<{x: number; y: number; k: number}> = ({x, y, k}) => (
+  <g transform={`translate(${x} ${y}) scale(${Math.max(0.01, k)})`}>
+    <rect x={-130} y={-200} width={260} height={360} rx={12} fill="#5A6280" stroke={K.navy} strokeWidth={6} />
+    {[0, 1, 2].map((r) => [0, 1].map((c) => <rect key={`${r}${c}`} x={-95 + c * 110} y={-165 + r * 90} width={80} height={60} rx={8} fill="#BFD0F2" />))}
+    <rect x={-35} y={95} width={70} height={65} rx={6} fill="#2E3450" />
+  </g>
+);
+
+// 5 · Cuerpo 2: el cliente llama a otro → el agente de voz
 const Agente: React.FC<Ctx> = ({l, frame, e}) => {
+  const tAg = e.at('agente');
+  if (l < tAg - 2) {
+    const tOtro = e.at('otro');
+    const flecha = clamp01((l - e.at('llama')) / 10);
+    return (
+      <AbsoluteFill>
+        <Fondo frame={frame} de="#2A2F6E" />
+        <Txt top={150} size={70} color={K.oro} k={pop(l, e.at('llama'), 0.2)}>
+          …y llama a otro 😬
+        </Txt>
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          <g transform={`translate(230 760) scale(${Math.max(0.01, pop(l, e.at('cliente')))})`}>
+            <circle r={110} fill="#F7F9FC" stroke={K.navy} strokeWidth={6} />
+            <text y={40} textAnchor="middle" fontSize={120} fontFamily={FUENTE}>
+              👤
+            </text>
+            <text y={170} textAnchor="middle" fontSize={44} fontWeight={900} fill="#fff" fontFamily={FUENTE}>
+              Cliente
+            </text>
+          </g>
+          <path d={`M370,760 L${370 + 260 * flecha},760`} stroke={K.oro} strokeWidth={10} strokeDasharray="22 16" strokeLinecap="round" />
+          {flecha > 0.9 && <path d="M612,738 L640,760 L612,782" stroke={K.oro} strokeWidth={10} fill="none" strokeLinecap="round" strokeLinejoin="round" />}
+          <Edificio x={790} y={740} k={pop(l, tOtro, 0.2)} />
+          <text x={790} y={970} textAnchor="middle" fontSize={44} fontWeight={900} fill="#fff" fontFamily={FUENTE} opacity={l >= tOtro ? 1 : 0}>
+            Otra empresa
+          </text>
+        </svg>
+      </AbsoluteFill>
+    );
+  }
+  const la = l - (tAg - 2);
   const pasos: [string, string, number][] = [
     ['📞', 'Coge la llamada', e.at('coge')],
-    ['📝', 'Apunta servicio, nombre, teléfono y dirección', e.at('apunta')],
+    ['📝', 'Apunta los datos del cliente', e.at('apunta')],
     ['📅', 'Agenda la cita', e.at('agenda')],
     ['🔔', 'Avisa al técnico', e.at('avisa')],
   ];
@@ -154,7 +225,7 @@ const Agente: React.FC<Ctx> = ({l, frame, e}) => {
   return (
     <AbsoluteFill>
       <Fondo frame={frame} de="#1D3E9E" />
-      <Txt top={110} size={66} color={K.oro} k={pop(l, 2)}>
+      <Txt top={110} size={66} color={K.oro} k={pop(la, 2)}>
         Agente de voz 24/7 🎧
       </Txt>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
@@ -167,15 +238,15 @@ const Agente: React.FC<Ctx> = ({l, frame, e}) => {
           <div key={i} style={{position: 'absolute', left: 60, width: 870, top: 240 + i * 200, height: 168, transform: `scale(${Math.max(0, k)})`, transformOrigin: '0 50%', opacity: k > 0 ? 1 : 0.0}}>
             <div style={{position: 'absolute', inset: 0, background: '#0B1638', border: `5px solid ${K.oro}`, borderRadius: 30, display: 'flex', alignItems: 'center', gap: 22, padding: '0 26px', fontFamily: FUENTE}}>
               <div style={{width: 96, height: 96, borderRadius: 48, background: K.oro, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 54, flexShrink: 0}}>{ico}</div>
-              <div style={{fontWeight: 900, fontSize: i === 1 ? 46 : 56, color: '#fff', lineHeight: 1.1}}>{t}</div>
+              <div style={{fontWeight: 900, fontSize: 52, color: '#fff', lineHeight: 1.1}}>{t}</div>
               <div style={{marginLeft: 'auto', fontWeight: 900, fontSize: 40, color: K.oro, flexShrink: 0}}>{i + 1}</div>
             </div>
           </div>
         );
       })}
-      <Aura frame={frame} vol={0} ancho={430} clase="aura-b" saluda={l < 20} style={{left: 520, top: 1110}} />
+      <Aura frame={frame} vol={0} ancho={430} clase="aura-b" saluda={la < 20} style={{left: 520, top: 1110}} />
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
-        <g transform={`translate(330 1500) scale(${0.55 * rebote(l - 4, 1.2)})`}>
+        <g transform={`translate(330 1500) scale(${0.55 * rebote(la - 4, 1.2)})`}>
           <MovilGen frame={frame} vibra={l < pasos[0][2] ? 1 : 0} color={l >= pasos[0][2] ? K.verde : '#17338A'}>
             <text x={0} y={20} textAnchor="middle" fontSize={90} fontFamily={FUENTE}>
               {l >= pasos[0][2] ? '✅' : '📞'}
@@ -187,7 +258,35 @@ const Agente: React.FC<Ctx> = ({l, frame, e}) => {
   );
 };
 
-// ───────── Truco gratis · mensaje de ausencia ─────────
+// 6 · Bucle: "¿Y si todavía no quieres nada de esto? Para eso es el truco gratis."
+const Bucle2: React.FC<Ctx> = ({l, frame, e, vol}) => {
+  const tT = e.at('truco');
+  const k = rebote(l - tT, 1.1);
+  return (
+    <AbsoluteFill>
+      <Fondo frame={frame} />
+      <Txt top={150} size={80} k={pop(l, e.at('todavía'), 0.2)}>
+        ¿Todavía no? 🤔
+      </Txt>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+        {l >= tT && (
+          <g transform={`translate(465 640) rotate(${-4 + Math.sin(frame / 12) * 2}) scale(${Math.max(0.01, k)})`}>
+            <rect x={-330} y={-170} width={660} height={340} rx={36} fill="#0B1638" stroke={K.oro} strokeWidth={8} />
+            <text x={0} y={-30} textAnchor="middle" fontFamily={FUENTE} fontSize={110}>
+              🎁
+            </text>
+            <text x={0} y={110} textAnchor="middle" fontFamily={FUENTE} fontWeight={900} fontSize={84} fill={K.oro}>
+              TRUCO GRATIS
+            </text>
+          </g>
+        )}
+      </svg>
+      <Persona quien="kevin" frame={frame} vol={vol('kevin')} habla={vol('kevin') > 0} x={500} y={1215} ancho={470} pose={{brazoD: l >= tT ? -120 * easeOut((l - tT) / 8) : -10, cabeza: 4}} />
+    </AbsoluteFill>
+  );
+};
+
+// 7 · Cuerpo 3: truco gratis · mensaje de ausencia
 const TrucoB: React.FC<Ctx> = ({l, frame, e, vol}) => {
   const tMsg = e.at('mensaje');
   const kMsg = pop(l, tMsg, 0.15);
@@ -239,38 +338,66 @@ const RosaAdios: React.FC<{frame: number}> = ({frame}) => (
   <Persona quien="rosa" frame={frame} vol={0} habla={false} x={540} y={1170} ancho={270} pose={{brazoD: -150 + Math.sin(frame * 0.5) * 18}} extra={`${oculta('movil-izq')}\n${oculta('movil-bolsillo')}`} />
 );
 
+/** Pastilla "Comenta 24H" dentro de la pared del cierre. */
+const Comenta: React.FC<{k: number}> = ({k}) => (
+  <div style={{position: 'absolute', left: 0, right: 150, top: 840, display: 'flex', justifyContent: 'center', opacity: k > 0 ? 1 : 0}}>
+    <div style={{transform: `scale(${Math.max(0, k)}) rotate(-2deg)`, background: K.oro, color: K.marino, fontFamily: FUENTE, fontWeight: 900, fontSize: 62, padding: '10px 40px', borderRadius: 50, boxShadow: '0 10px 0 rgba(6,12,40,.45)', whiteSpace: 'nowrap'}}>💬 Comenta 24H</div>
+  </div>
+);
+
 export const VideoB: React.FC<PropsReel> = (props) => (
   <Reel
     props={props}
     minimos={MIN_B}
+    sinEntrada={['gancho']}
     escena={(c) => {
       switch (c.e.id) {
+        case 'gancho':
+          return <Gancho {...c} />;
         case 'intro':
           return <Intro l={c.l} frame={c.frame} cfg={c.cfg} dia={2} vol={c.vol} />;
-        case 'ayer':
-          return <Ayer {...c} />;
-        case 'rosa':
-          return <Rosa3 {...c} />;
+        case 'cae':
+          return <Cae {...c} />;
+        case 'bucle1':
+          return <Bucle1 {...c} />;
         case 'agente':
           return <Agente {...c} />;
+        case 'bucle2':
+          return <Bucle2 {...c} />;
         case 'truco':
           return <TrucoB {...c} />;
+        case 'cierre':
+          return (
+            <Cierre l={c.l} frame={c.frame} e={c.e} vol={c.vol} cfg={c.cfg} fondo={<RosaAdios frame={c.frame} />}>
+              <Comenta k={pop(c.l, c.e.at('Comenta'), 0.2)} />
+            </Cierre>
+          );
         default:
-          return <Cierre l={c.l} frame={c.frame} e={c.e} vol={c.vol} cfg={c.cfg} fondo={<RosaAdios frame={c.frame} />} />;
+          // frase final que empalma con el gancho: Rosa vuelve a estar con los tres móviles sonando
+          return <RosaEscena l={c.l} frame={c.frame} />;
       }
     }}
     sfx={(L: Linea): Sfx[] => {
-      const r = L.esc('rosa')!;
+      const g = L.esc('gancho')!;
+      const ca = L.esc('cae')!;
       const a = L.esc('agente')!;
+      const b2 = L.esc('bucle2')!;
       const t = L.esc('truco')!;
+      const c = L.esc('cierre')!;
+      const f = L.esc('bucle')!;
       return [
-        [r.desde + 2, 'telefono', 0.25],
-        [r.desde + 6, 'tono2', 0.2],
-        [r.desde + r.at('solo') + 14, 'tropiezo', 0.25],
-        [r.desde + r.at('manos') + 14, 'tropiezo', 0.25],
+        [g.desde + 2, 'telefono', 0.25],
+        [g.desde + 6, 'tono2', 0.2],
+        [ca.desde + ca.at('cae') + 14, 'tropiezo', 0.25],
+        [ca.desde + ca.at('cae') + 16, 'boing', 0.2],
+        [a.desde + a.at('otro'), 'pop', 0.22],
+        [a.desde + a.at('agente') - 2, 'whoosh', 0.25],
         ...['coge', 'apunta', 'agenda', 'avisa'].map((w) => [a.desde + a.at(w), 'pop', 0.22] as Sfx),
+        [b2.desde + b2.at('truco'), 'ding', 0.25],
         [t.desde + t.at('mensaje'), 'pop', 0.22],
         ...['nombre', 'dirección', 'pasado'].map((w) => [t.desde + t.at(w), 'tick', 0.3] as Sfx),
+        [c.desde + c.at('Comenta'), 'pop', 0.22],
+        [f.desde + 2, 'telefono', 0.25],
       ];
     }}
   />

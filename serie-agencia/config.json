@@ -1,6 +1,6 @@
 {
   "A": {"SEGUIDOR": "@castillacurulla", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": ["@usuario1", "@usuario2", "@usuario3", "@usuario4", "@usuario5", "@usuario6"]},
-  "B": {"SEGUIDOR": "@angibanx.ar", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": [], "AYER": ""},
+  "B": {"SEGUIDOR": "@angibanx.ar", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": [], "COLA": 0.3},
   "C": {"SEGUIDOR": "@_hevertt_06", "SEGUIDORES_ACTUALES": 6, "NOMBRES_PARED": []},
   "voces": {
     "kevin": {"nombre": "es-ES-AlvaroNeural", "pitch": "+15Hz", "rate": "+2%"},

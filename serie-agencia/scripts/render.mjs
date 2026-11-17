@@ -17,7 +17,7 @@ Comenta PROMPT y te lo explicamos.
 
 Los personajes son dibujos y la voz es sintética.
 `,
-  B: `Día 2 montando una agencia y consultoría de IA desde cero 🚀 Rosa tiene una empresa de multiservicios 24/7… y tres móviles sonando a la vez 📞📞📞 Un agente de voz coge la llamada, apunta los datos del cliente, agenda la cita y avisa al técnico. Y el truco gratis de hoy: un mensaje de ausencia en WhatsApp Business que pida nombre, dirección y qué ha pasado.
+  B: `Día 2 montando una agencia y consultoría de IA desde cero 🚀 Tres móviles… y solo dos manos 📞📞📞 Rosa tiene una empresa de multiservicios 24/7 y, si se le escapa una llamada, ese cliente llama a otro. Un agente de voz coge la llamada, apunta los datos, agenda la cita y avisa al técnico. Y el truco gratis de hoy: un mensaje de ausencia en WhatsApp Business que pida nombre, dirección y qué ha pasado.
 ${PIE}
 
 Comenta 24H y te lo explicamos.
@@ -51,7 +51,7 @@ for (const v of process.argv.slice(2).length ? process.argv.slice(2) : ['A', 'B'
     console.log(`OK ${mp4} (${(statSync(mp4).size / 1e6).toFixed(1)} MB, ${(composition.durationInFrames / 30).toFixed(2)} s)`);
   }
   // Portada: rótulo "DÍA X" con el pósit, Kevin y Riyad (sin subtítulos)
-  const sin = await selectComposition({serveUrl, id: `${v}-sin-subs`, browserExecutable});
+  const sin = await selectComposition({serveUrl, id: `${v}-portada`, browserExecutable});
   await renderStill({composition: sin, serveUrl, output: resolve(out, `${base}_portada.png`), frame: 40, browserExecutable});
   writeFileSync(resolve(out, `${base}_descripcion.txt`), DESCRIPCION[v]);
   console.log(`OK portada y descripción ${v}`);
