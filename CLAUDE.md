@@ -27,3 +27,23 @@ Los socios son **Kevin** y **Riyad**. Este kit viene del Claude Code de Kevin; l
 - "Personajes dibujados · voz sintética" solo va en la descripción del post, nunca en el vídeo.
 - Personajes nuevos: SVG 600×900 con los mismos `id` que `kevin.svg`; enseñar una imagen antes de renderizar.
 - No cambiar el diseño de ningún personaje.
+
+## Entorno (cloud)
+- Las sesiones deben usar el entorno **`dauradalabsvideos`**: permite `speech.platform.bing.com` (voces edge-tts) y su script de preparación hace `npm ci` en `serie-agencia/` e instala `edge-tts`.
+- Si `node_modules` no existe: `cd serie-agencia && npm ci`. Si falta edge-tts: `pip install edge-tts`.
+- Voces: `SSL_CERT_FILE=/root/.ccr/ca-bundle.crt python3 scripts/voz.py <VÍDEO>`.
+- Los vídeos renderizados (`serie-agencia/out/`) **no se suben al repo**: se entregan al usuario como archivo.
+
+## Cuando el usuario mande el prompt de un vídeo nuevo
+1. **Guion.** Escribe las frases (intro → personaje/problema → solución → truco gratis → cierre), 2,5–3 palabras/s, 30–36 s en total. Comprueba las reglas de arriba (sin precios, sin clientes, sin marcas en pantalla, seguidor solo en el pósit). Si falta el usuario del seguidor, el número de seguidores o el número de día, pregúntalo.
+2. **Letra nueva** (D, E…): copia el vídeo más parecido (`src/VideoB.tsx`) a `src/VideoD.tsx` y adapta sus escenas del medio y `MIN_D`. Reutiliza siempre `Intro`, `Truco`, `Cierre` y `Reel`, y usa `e.at('palabra')` para que los elementos aparezcan cuando la voz los nombra.
+3. Registra el vídeo en:
+   - `src/Root.tsx` (import de `public/voz/D/tiempos.json` y entrada en `V`; el tipo `'A' | 'B' | 'C'` se amplía);
+   - `scripts/voz.py` → función `guion` (bloque `if video == "D"`);
+   - `scripts/render.mjs` → `NOMBRES` (p. ej. `diaN_tema`) y `DESCRIPCION` (termina con `${PIE}`, "Comenta X…" y "Los personajes son dibujos y la voz es sintética.");
+   - `config.json` → bloque `"D"` con `SEGUIDOR`, `SEGUIDORES_ACTUALES`, `NOMBRES_PARED: []`.
+4. Genera la voz: `python3 scripts/voz.py D` (revisa el total de segundos que imprime).
+5. Personaje nuevo: SVG 600×900 con los mismos `id` que `kevin.svg`, añadido a `scripts/preparar.mjs`; **enseña una imagen al usuario y espera su visto bueno antes de renderizar**.
+6. Revisa fotogramas: `node scripts/still.mjs D <segundos…>` (incluye los cortes de escena) y mira las zonas seguras. Enseña los fotogramas clave al usuario.
+7. Render: `node scripts/render.mjs D` (≈8 min). Comprueba los cortes con ffmpeg y entrega al usuario los 4 archivos: `.mp4`, `_sin_subs.mp4`, `_portada.png`, `_descripcion.txt`.
+8. Haz commit y push del código (no de `out/`).

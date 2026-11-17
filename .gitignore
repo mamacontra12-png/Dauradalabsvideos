@@ -3,3 +3,4 @@ node_modules/
 **/out/*.bruto.mp4
 __pycache__/
 .DS_Store
+serie-agencia/out/
