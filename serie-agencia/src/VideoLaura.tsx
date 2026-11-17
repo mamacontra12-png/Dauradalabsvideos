@@ -133,7 +133,8 @@ const Calle: React.FC<{
           whiteSpace: 'nowrap',
         }}
       >
-        <span style={{color: c > 0.05 ? K.oro : '#C9CCD6'}}>⭐</span>&nbsp;{resenas} reseñas
+        {/* apagado y pequeño siempre pone 4; el contador solo corre cuando ya está encendido */}
+        <span style={{color: c > 0.05 ? K.oro : '#C9CCD6'}}>⭐</span>&nbsp;{c > 0.05 ? resenas : 4} reseñas
       </div>
       {/* cuerda del cartel caído */}
       {c < 0.05 && (
@@ -441,7 +442,7 @@ const Cartel: React.FC<Ctx> = ({l, frame}) => {
   // por tramos: 4 → 40 → 80 → 120, sincronizado con los hitos de arriba
   const tramo = Math.max(0, PASOS.findIndex((_, i) => i === PASOS.length - 1 || l < tPaso(i + 1)));
   const n = tramo >= PASOS.length - 1 ? PASOS[PASOS.length - 1] : Math.round(lerp(PASOS[tramo], PASOS[tramo + 1], clamp01((l - tPaso(tramo)) / (tPaso(tramo + 1) - tPaso(tramo)))));
-  const crece = clamp01((l - tNotif(1)) / 24);
+  const crece = clamp01((l - tNotif(0) + 2) / 20);
   return (
     <AbsoluteFill>
       <Calle frame={frame} crece={crece} resenas={n} falla={crece > 0.6} laura={{x: 230, y: 1300, ancho: 400, pose: {brazoD: -150 * easeOut(crece), brazoI: 150 * easeOut(crece), y: -Math.abs(Math.sin(frame / 3)) * 10 * crece}}} />
